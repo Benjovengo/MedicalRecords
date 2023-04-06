@@ -148,4 +148,17 @@ describe("Clinical Data", function () {
     expect(numberOfVaccines[0]).to.equal(1)
   })
 
+  it('Retrieve data of a registered vaccine.', async () => {
+    await clinicalData.addVaccine(name, lab, lot, dose, numberOfDoses, date, patientCPF, deployer.address)
+    // retrieve data
+    const vaccineData = await clinicalData.getVaccine(patientCPF, 0)
+    expect(vaccineData.name).to.equal(name)
+    expect(vaccineData.lab).to.equal(lab)
+    expect(vaccineData.lot).to.equal(lot)
+    expect(vaccineData.dose).to.equal(dose)
+    expect(vaccineData.numberOfDoses).to.equal(numberOfDoses)
+    expect(vaccineData.date).to.equal(date)
+    expect(vaccineData.authorizedUser).to.equal(deployer.address)
+  })
+
 });
