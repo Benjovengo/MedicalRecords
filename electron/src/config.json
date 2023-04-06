@@ -1,13 +1,13 @@
 {
-  "5": {
-      "clinicalData": {
-      "address": "0x16517F82d1004c721e0Df65E2C841D463b6561CC"
-    },
-      "authorizedAccounts": {
-      "address": "0xE193B61D38e42e54e1e81d843bbd3172977c3305"
-    },
-      "patientsData": {
-      "address": "0x75FfdBb70Ca2c8D7870581Dacc7de95053a129fa"
-    }
+ "31337": {
+  "clinicalData": {
+   "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
+  },
+  "authorizedAccounts": {
+   "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707"
+  },
+  "patientsData": {
+   "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F"
   }
+ }
 }
