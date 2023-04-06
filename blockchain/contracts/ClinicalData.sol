@@ -81,7 +81,7 @@ contract ClinicalData {
         string _clinicHospitalName,
         string _procedureInfo,
         uint256 _date,
-        uint256 _doctorAddress,
+        uint256 _doctorCPF,
         uint256 _patientCPF
     );
     event EncryptedProcedureAdded(uint256 _patientCPF);
@@ -158,7 +158,7 @@ contract ClinicalData {
      * @param _clinicHospitalName the name of the clinic/hospital
      * @param _procedureInfo what procedure was made
      * @param _date today's date - Unix timestamp
-     * @param _doctorAddress the CPF of the doctor
+     * @param _doctorCPF the CPF of the doctor
      * @param _patientCPF the CPF of the patient
      * @param _authorizedUser the address of the user who registered the procedure
      */
@@ -166,7 +166,7 @@ contract ClinicalData {
         string memory _clinicHospitalName,
         string memory _procedureInfo,
         uint256 _date,
-        uint256 _doctorAddress,
+        uint256 _doctorCPF,
         uint256 _patientCPF,
         address _authorizedUser
     ) public {
@@ -176,22 +176,22 @@ contract ClinicalData {
             _clinicHospitalName,
             _procedureInfo,
             _date,
-            _doctorAddress,
+            _doctorCPF,
             _authorizedUser
         );
         /// Add procedure to doctor's list
-        doctorsProcedures[_doctorAddress][
-            numberOfProceduresDoctor[_doctorAddress]
+        doctorsProcedures[_doctorCPF][
+            numberOfProceduresDoctor[_doctorCPF]
         ] = doctorProcedure(_patientCPF, numberOfProcedures[_patientCPF]);
         /// Increment counters
         numberOfProcedures[_patientCPF] += 1;
-        numberOfProceduresDoctor[_doctorAddress] += 1;
+        numberOfProceduresDoctor[_doctorCPF] += 1;
         /// Broadcast event
         emit ProcedureAdded(
             _clinicHospitalName,
             _procedureInfo,
             _date,
-            _doctorAddress,
+            _doctorCPF,
             _patientCPF
         );
     }
