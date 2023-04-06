@@ -87,11 +87,6 @@
      },
      {
       "internalType": "uint256",
-      "name": "CPF",
-      "type": "uint256"
-     },
-     {
-      "internalType": "uint256",
       "name": "date",
       "type": "uint256"
      }

@@ -54,7 +54,7 @@
    {
     "indexed": false,
     "internalType": "uint256",
-    "name": "_doctorAddress",
+    "name": "_doctorCPF",
     "type": "uint256"
    },
    {
@@ -165,7 +165,7 @@
    },
    {
     "internalType": "uint256",
-    "name": "_doctorAddress",
+    "name": "_doctorCPF",
     "type": "uint256"
    },
    {
@@ -208,7 +208,7 @@
    },
    {
     "internalType": "uint256",
-    "name": "_totalDoses",
+    "name": "_numberOfDoses",
     "type": "uint256"
    },
    {
@@ -434,7 +434,7 @@
      },
      {
       "internalType": "uint256",
-      "name": "totalDoses",
+      "name": "numberOfDoses",
       "type": "uint256"
      },
      {
