@@ -107,6 +107,12 @@ describe("Clinical Data", function () {
   const procedureInfo = 'The first procedure.'
   const doctorCPF = '98765432100'
   const patientCPF = '12481632641'
+  // Vaccine
+  const name = 'Blockchain Vaccine'
+  const lab = 'Benjovengo Co.'
+  const lot = 'fpb-001-2023'
+  const dose = 1
+  const numberOfDoses = 3
 
   beforeEach(async () => {
     // Setup accounts - to get signers use `const signers = await ethers.getSigners()`
@@ -122,7 +128,7 @@ describe("Clinical Data", function () {
     expect(result).to.not.equal('0x')
   })
 
-  it('Add data for a new procedure.', async () => {
+  it('Add a new procedure.', async () => {
     await clinicalData.addProcedure(clinicHospital, procedureInfo, date, doctorCPF, patientCPF, deployer.address)
     const numberOfProcedures = await clinicalData.getNumberOfProcedures(patientCPF)
     expect(numberOfProcedures[0]).to.equal(1)
@@ -134,6 +140,12 @@ describe("Clinical Data", function () {
     // retrieve data
     const procedureData = await clinicalData.getProcedure(patientCPF, 0)
     expect(procedureData.clinicHospitalName).to.equal(clinicHospital)
+  })
+
+  it('Add a new vaccine.', async () => {
+    await clinicalData.addVaccine(name, lab, lot, dose, numberOfDoses, date, patientCPF, deployer.address)
+    const numberOfVaccines = await clinicalData.getNumberOfVaccines(patientCPF)
+    expect(numberOfVaccines[0]).to.equal(1)
   })
 
 });
