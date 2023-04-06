@@ -20,10 +20,10 @@ module.exports = {
       accounts: [process.env.GOERLI_PRIVATE_KEY],
     },
   },
-  gasReporter: {
+  /* gasReporter: {
     currency: 'ETH',
     enabled: true
-  },
+  }, */
   solidity: {
     version: '0.8.17',
     settings: {
