@@ -2,6 +2,10 @@ const { expect } = require("chai");
 const { ethers } = require('hardhat')
 
 
+// date
+const date = Math.floor((new Date()).getTime() / 1000)
+
+
 describe("Patient's Data", function () {
 
   let patientsData
@@ -24,7 +28,6 @@ describe("Patient's Data", function () {
     const firstName = 'Fábio'
     const lastName = 'Benjovengo'
     const CPF = '12312312312'
-    const date = Math.floor((new Date()).getTime() / 1000)
     // Call smart contract functions
     await patientsData.addPatient(firstName, lastName, CPF, date)
     const getPatientTx = await patientsData.getPatient(CPF)
@@ -40,8 +43,6 @@ describe("Authorized Accounts", function () {
   let authorizedAccounts
   // accounts
   let deployer, account01, account02
-  // date
-  const date = Math.floor((new Date()).getTime() / 1000)
 
   beforeEach(async () => {
     // Setup accounts - to get signers use `const signers = await ethers.getSigners()`
@@ -98,11 +99,12 @@ describe("Authorized Accounts", function () {
 
 describe("Clinical Data", function () {
 
+  let deployer, account01
   let clinicalData
 
   beforeEach(async () => {
     // Setup accounts - to get signers use `const signers = await ethers.getSigners()`
-    [deployer] = await ethers.getSigners()
+    [deployer, account01] = await ethers.getSigners()
     // Deploy ClinicalData
     const ClinicalData = await ethers.getContractFactory('ClinicalData')
     clinicalData = await ClinicalData.connect(deployer).deploy()
@@ -112,6 +114,17 @@ describe("Clinical Data", function () {
     const result = await clinicalData.address
     expect(result).to.not.equal('')
     expect(result).to.not.equal('0x')
+  })
+
+  it('Add data for a new procedure.', async () => {
+    // Procedure
+    const clinicHospital = 'The Blockchain Hospital'
+    const procedureInfo = 'The first procedure.'
+    const doctorCPF = '98765432100'
+    const patientCPF = '12481632641'
+    await clinicalData.addProcedure(clinicHospital, procedureInfo, date, doctorCPF, patientCPF, deployer.address)
+    const numberOfProcedures = await clinicalData.getNumberOfProcedures(patientCPF)
+    expect(numberOfProcedures[0]).to.equal(1)
   })
 
 });
