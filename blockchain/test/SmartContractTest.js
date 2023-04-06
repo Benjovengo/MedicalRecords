@@ -33,6 +33,7 @@ describe("Patient's Data", function () {
 });
 
 
+
 describe("Authorized Accounts", function () {
 
   // smart contract
@@ -92,4 +93,25 @@ describe("Authorized Accounts", function () {
     expect(deAuthorizedPerson).to.equal(false)
     expect(isPersonReAuthorized).to.equal(true)
   })
+});
+
+
+describe("Clinical Data", function () {
+
+  let clinicalData
+
+  beforeEach(async () => {
+    // Setup accounts - to get signers use `const signers = await ethers.getSigners()`
+    [deployer] = await ethers.getSigners()
+    // Deploy ClinicalData
+    const ClinicalData = await ethers.getContractFactory('ClinicalData')
+    clinicalData = await ClinicalData.connect(deployer).deploy()
+  })
+
+  it('Deployment address.', async () => {
+    const result = await clinicalData.address
+    expect(result).to.not.equal('')
+    expect(result).to.not.equal('0x')
+  })
+
 });
