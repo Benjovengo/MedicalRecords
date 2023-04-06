@@ -1,5 +1,6 @@
 const { expect } = require("chai");
 const { ethers } = require('hardhat')
+const CryptoJS = require("crypto-js")
 
 
 // date
@@ -101,6 +102,7 @@ describe("Clinical Data", function () {
 
   let deployer, account01
   let clinicalData
+  let dataJSON, stringifyJSON
 
   // Procedure
   const clinicHospital = 'The Blockchain Hospital'
@@ -120,6 +122,18 @@ describe("Clinical Data", function () {
     // Deploy ClinicalData
     const ClinicalData = await ethers.getContractFactory('ClinicalData')
     clinicalData = await ClinicalData.connect(deployer).deploy()
+
+    // vaccine data struct
+    dataJSON = {
+      'name': name,
+      'lab': lab,
+      'lot': lot,
+      'dose': dose,
+      'numberOfDoses': numberOfDoses,
+      'date': date,
+      'authorizedUser': deployer.address
+    }
+    stringifyJSON = JSON.stringify(dataJSON)
   })
 
   it('Deployment address.', async () => {
@@ -165,5 +179,30 @@ describe("Clinical Data", function () {
     expect(vaccineData.date).to.equal(date)
     expect(vaccineData.authorizedUser).to.equal(deployer.address)
   })
+
+  it('Add a new encrypted vaccine.', async () => {
+    const encryptedData = CryptoJS.AES.encrypt(stringifyJSON, 'secret key 123').toString()
+    await clinicalData.addEncryptedVaccine(encryptedData, patientCPF)
+    const numberOfVaccines = await clinicalData.getNumberOfVaccines(patientCPF)
+    expect(numberOfVaccines[1]).to.equal(1)
+  })
+
+  it('Decrypt vaccine data.', async () => {
+    const encryptedData = CryptoJS.AES.encrypt(stringifyJSON, 'secret key 123').toString()
+    await clinicalData.addEncryptedVaccine(encryptedData, patientCPF)
+    const encryptedVaccineData = await clinicalData.getEncryptedVaccine(patientCPF, 0)
+    // Decrypt
+    const dataBytes  = CryptoJS.AES.decrypt(encryptedVaccineData, 'secret key 123');
+    const unencryptedStringify = dataBytes.toString(CryptoJS.enc.Utf8);
+    const vaccineData = JSON.parse(unencryptedStringify)
+    expect(vaccineData.name).to.equal(name)
+    expect(vaccineData.lab).to.equal(lab)
+    expect(vaccineData.lot).to.equal(lot)
+    expect(vaccineData.dose).to.equal(dose)
+    expect(vaccineData.numberOfDoses).to.equal(numberOfDoses)
+    expect(vaccineData.date).to.equal(date)
+    expect(vaccineData.authorizedUser).to.equal(deployer.address)
+  })
+
 
 });
