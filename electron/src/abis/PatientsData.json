@@ -1,0 +1,107 @@
+[
+ {
+  "inputs": [],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_firstName",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_lastName",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_CPF",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_date",
+    "type": "uint256"
+   }
+  ],
+  "name": "PatientAdded",
+  "type": "event"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "string",
+    "name": "_firstName",
+    "type": "string"
+   },
+   {
+    "internalType": "string",
+    "name": "_lastName",
+    "type": "string"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_CPF",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_date",
+    "type": "uint256"
+   }
+  ],
+  "name": "addPatient",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "_CPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "getPatient",
+  "outputs": [
+   {
+    "components": [
+     {
+      "internalType": "string",
+      "name": "firstName",
+      "type": "string"
+     },
+     {
+      "internalType": "string",
+      "name": "lastName",
+      "type": "string"
+     },
+     {
+      "internalType": "uint256",
+      "name": "CPF",
+      "type": "uint256"
+     },
+     {
+      "internalType": "uint256",
+      "name": "date",
+      "type": "uint256"
+     }
+    ],
+    "internalType": "struct PatientsData.Person",
+    "name": "",
+    "type": "tuple"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ }
+]

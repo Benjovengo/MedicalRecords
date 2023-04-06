@@ -1,0 +1,459 @@
+[
+ {
+  "inputs": [],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "EncryptedProcedureAdded",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "EncryptedVaccineAdded",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_clinicHospitalName",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_procedureInfo",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_date",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_doctorAddress",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "ProcedureAdded",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_name",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_lab",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_lot",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_dose",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_date",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "VaccineAdded",
+  "type": "event"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "string",
+    "name": "_encryptedProcedureInfo",
+    "type": "string"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "addEncryptedProcedure",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "string",
+    "name": "_encryptedVaccineInfo",
+    "type": "string"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "addEncryptedVaccine",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "string",
+    "name": "_clinicHospitalName",
+    "type": "string"
+   },
+   {
+    "internalType": "string",
+    "name": "_procedureInfo",
+    "type": "string"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_date",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_doctorAddress",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   },
+   {
+    "internalType": "address",
+    "name": "_authorizedUser",
+    "type": "address"
+   }
+  ],
+  "name": "addProcedure",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "string",
+    "name": "_name",
+    "type": "string"
+   },
+   {
+    "internalType": "string",
+    "name": "_lab",
+    "type": "string"
+   },
+   {
+    "internalType": "string",
+    "name": "_lot",
+    "type": "string"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_dose",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_totalDoses",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_date",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   },
+   {
+    "internalType": "address",
+    "name": "_authorizedUser",
+    "type": "address"
+   }
+  ],
+  "name": "addVaccine",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_newOwner",
+    "type": "address"
+   }
+  ],
+  "name": "changeOwner",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_id",
+    "type": "uint256"
+   }
+  ],
+  "name": "getEncryptedProcedure",
+  "outputs": [
+   {
+    "internalType": "string",
+    "name": "",
+    "type": "string"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_id",
+    "type": "uint256"
+   }
+  ],
+  "name": "getEncryptedVaccine",
+  "outputs": [
+   {
+    "internalType": "string",
+    "name": "",
+    "type": "string"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "getNumberOfProcedures",
+  "outputs": [
+   {
+    "internalType": "uint256[2]",
+    "name": "",
+    "type": "uint256[2]"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   }
+  ],
+  "name": "getNumberOfVaccines",
+  "outputs": [
+   {
+    "internalType": "uint256[2]",
+    "name": "",
+    "type": "uint256[2]"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "getOwner",
+  "outputs": [
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_id",
+    "type": "uint256"
+   }
+  ],
+  "name": "getProcedure",
+  "outputs": [
+   {
+    "components": [
+     {
+      "internalType": "string",
+      "name": "clinicHospitalName",
+      "type": "string"
+     },
+     {
+      "internalType": "string",
+      "name": "procedureInfo",
+      "type": "string"
+     },
+     {
+      "internalType": "uint256",
+      "name": "date",
+      "type": "uint256"
+     },
+     {
+      "internalType": "uint256",
+      "name": "doctorAddress",
+      "type": "uint256"
+     },
+     {
+      "internalType": "address",
+      "name": "authorizedUser",
+      "type": "address"
+     }
+    ],
+    "internalType": "struct ClinicalData.Procedure",
+    "name": "",
+    "type": "tuple"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "_patientCPF",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_id",
+    "type": "uint256"
+   }
+  ],
+  "name": "getVaccine",
+  "outputs": [
+   {
+    "components": [
+     {
+      "internalType": "string",
+      "name": "name",
+      "type": "string"
+     },
+     {
+      "internalType": "string",
+      "name": "lab",
+      "type": "string"
+     },
+     {
+      "internalType": "string",
+      "name": "lot",
+      "type": "string"
+     },
+     {
+      "internalType": "uint256",
+      "name": "dose",
+      "type": "uint256"
+     },
+     {
+      "internalType": "uint256",
+      "name": "totalDoses",
+      "type": "uint256"
+     },
+     {
+      "internalType": "uint256",
+      "name": "date",
+      "type": "uint256"
+     },
+     {
+      "internalType": "address",
+      "name": "authorizedUser",
+      "type": "address"
+     }
+    ],
+    "internalType": "struct ClinicalData.Vaccine",
+    "name": "",
+    "type": "tuple"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ }
+]

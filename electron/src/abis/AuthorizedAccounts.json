@@ -1,0 +1,168 @@
+[
+ {
+  "inputs": [],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_firstName",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "string",
+    "name": "_lastName",
+    "type": "string"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_CPF",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "_date",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "address",
+    "name": "_blockchainAccountAddress",
+    "type": "address"
+   }
+  ],
+  "name": "AuthorizedPersonAdded",
+  "type": "event"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_blockchainAccountAddress",
+    "type": "address"
+   }
+  ],
+  "name": "authorizePerson",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_blockchainAccountAddress",
+    "type": "address"
+   }
+  ],
+  "name": "deauthorizePerson",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_blockchainAccountAddress",
+    "type": "address"
+   }
+  ],
+  "name": "getAuthorizedPerson",
+  "outputs": [
+   {
+    "components": [
+     {
+      "internalType": "string",
+      "name": "firstName",
+      "type": "string"
+     },
+     {
+      "internalType": "string",
+      "name": "lastName",
+      "type": "string"
+     },
+     {
+      "internalType": "uint256",
+      "name": "CPF",
+      "type": "uint256"
+     },
+     {
+      "internalType": "uint256",
+      "name": "date",
+      "type": "uint256"
+     },
+     {
+      "internalType": "bool",
+      "name": "isAuthorized",
+      "type": "bool"
+     }
+    ],
+    "internalType": "struct AuthorizedAccounts.Person",
+    "name": "",
+    "type": "tuple"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_blockchainAccountAddress",
+    "type": "address"
+   }
+  ],
+  "name": "isPersonAuthorized",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "string",
+    "name": "_firstName",
+    "type": "string"
+   },
+   {
+    "internalType": "string",
+    "name": "_lastName",
+    "type": "string"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_CPF",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "_date",
+    "type": "uint256"
+   },
+   {
+    "internalType": "address",
+    "name": "_blockchainAccountAddress",
+    "type": "address"
+   }
+  ],
+  "name": "setAuthorizedPerson",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ }
+]
