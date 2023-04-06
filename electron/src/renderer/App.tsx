@@ -1,41 +1,29 @@
+import { Container, Row, Col } from "reactstrap";
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
+
 import './App.css';
 
-function Hello() {
+
+function MedicalRecordsPage() {
   return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
-    </div>
+    <>
+      <section className='hero__section'>
+        <Container fluid>
+          <Row className='align-items-center'>
+            <Col lg="6" md="6">
+              <div className="hero__content">
+                <div className="hero__header">
+                  Medical Records
+                  <div className='hero__sub__header'>
+                    powered by Fábio Benjovengo and the Ethereum Network
+                  </div>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    </>
   );
 }
 
@@ -43,7 +31,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Hello />} />
+        <Route path="/" element={<MedicalRecordsPage />} />
       </Routes>
     </Router>
   );
