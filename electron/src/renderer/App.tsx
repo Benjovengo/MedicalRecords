@@ -25,6 +25,8 @@ const ethereumClient = new EthereumClient(wagmiClient, chains)
 
 
 const MedicalRecordsPage: React.FunctionComponent = () => {
+  const { address } = useAccount()
+
   return (
     <>
       <section className='hero__section'>
@@ -39,6 +41,30 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
                   </div>
                 </div>
               </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section>
+        <Container fluid>
+          <Row className='mt-3 mb-3'>
+            <Col>
+              Patient Section
+            </Col>
+            <Col className='ms-5'>
+              <WagmiConfig client={wagmiClient}>
+                <Row className="align-items-end">
+                  <Col className="d-flex justify-content-end mt-3">
+                    <Web3Button />
+                  </Col>
+                </Row>
+                <Row className="align-items-end">
+                  <Col className="d-flex justify-content-end mt-3">
+                    Employee Section
+                  </Col>
+                </Row>
+              </WagmiConfig>
+              <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
             </Col>
           </Row>
         </Container>
