@@ -1,0 +1,13 @@
+{
+  "5": {
+      "clinicalData": {
+      "address": "0x16517F82d1004c721e0Df65E2C841D463b6561CC"
+    },
+      "authorizedAccounts": {
+      "address": "0xE193B61D38e42e54e1e81d843bbd3172977c3305"
+    },
+      "patientsData": {
+      "address": "0x75FfdBb70Ca2c8D7870581Dacc7de95053a129fa"
+    }
+  }
+}
