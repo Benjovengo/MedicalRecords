@@ -2,6 +2,13 @@
 
 <br>
 
+## References
+
+<p><a href="https://github.com/WalletConnect/web3modal">web3modal</a></p>
+<p><a href="https://docs.walletconnect.com/2.0/web3modal/react/installation">web3modal docs</a></p>
+
+<br>
+
 <p>
   Electron React Boilerplate uses <a href="https://electron.atom.io/">Electron</a>, <a href="https://facebook.github.io/react/">React</a>, <a href="https://github.com/reactjs/react-router">React Router</a>, <a href="https://webpack.js.org/">Webpack</a> and <a href="https://www.npmjs.com/package/react-refresh">React Fast Refresh</a>.
 </p>
@@ -19,6 +26,12 @@
 [![StackOverflow][stackoverflow-img]][stackoverflow-url]
 
 </div>
+
+## Build
+
+```bash
+npm run package
+```
 
 ## Install
 
