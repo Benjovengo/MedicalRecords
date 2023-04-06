@@ -102,6 +102,12 @@ describe("Clinical Data", function () {
   let deployer, account01
   let clinicalData
 
+  // Procedure
+  const clinicHospital = 'The Blockchain Hospital'
+  const procedureInfo = 'The first procedure.'
+  const doctorCPF = '98765432100'
+  const patientCPF = '12481632641'
+
   beforeEach(async () => {
     // Setup accounts - to get signers use `const signers = await ethers.getSigners()`
     [deployer, account01] = await ethers.getSigners()
@@ -117,14 +123,17 @@ describe("Clinical Data", function () {
   })
 
   it('Add data for a new procedure.', async () => {
-    // Procedure
-    const clinicHospital = 'The Blockchain Hospital'
-    const procedureInfo = 'The first procedure.'
-    const doctorCPF = '98765432100'
-    const patientCPF = '12481632641'
     await clinicalData.addProcedure(clinicHospital, procedureInfo, date, doctorCPF, patientCPF, deployer.address)
     const numberOfProcedures = await clinicalData.getNumberOfProcedures(patientCPF)
     expect(numberOfProcedures[0]).to.equal(1)
+  })
+
+  it('Retrieve data of a registered procedure.', async () => {
+    // add procedure
+    await clinicalData.addProcedure(clinicHospital, procedureInfo, date, doctorCPF, patientCPF, deployer.address)
+    // retrieve data
+    const procedureData = await clinicalData.getProcedure(patientCPF, 0)
+    expect(procedureData.clinicHospitalName).to.equal(clinicHospital)
   })
 
 });
