@@ -128,6 +128,11 @@ describe("Clinical Data", function () {
     expect(result).to.not.equal('0x')
   })
 
+  it('Owner of the contract.', async () => {
+    const owner = await clinicalData.getOwner()
+    expect(owner).to.equal(deployer.address)
+  })
+
   it('Add a new procedure.', async () => {
     await clinicalData.addProcedure(clinicHospital, procedureInfo, date, doctorCPF, patientCPF, deployer.address)
     const numberOfProcedures = await clinicalData.getNumberOfProcedures(patientCPF)
