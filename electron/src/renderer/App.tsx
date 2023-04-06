@@ -1,10 +1,30 @@
 import { Container, Row, Col } from "reactstrap";
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
+import { Web3Modal, Web3Button } from '@web3modal/react'
+import { configureChains, createClient, WagmiConfig, useAccount } from 'wagmi'
+import { goerli } from 'wagmi/chains' // change to mainnet for production
 
+// Style sheet
 import './App.css';
+// Sensitive information
+import { projectId } from "../../work/sensitive";
+
+/**
+ * Web3Modal
+ * MetaMask interaction
+ */
+const chains = [goerli]
+const { provider } = configureChains(chains, [w3mProvider({ projectId })])
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors: w3mConnectors({ projectId, version: 1, chains }),
+  provider
+})
+const ethereumClient = new EthereumClient(wagmiClient, chains)
 
 
-function MedicalRecordsPage() {
+const MedicalRecordsPage: React.FunctionComponent = () => {
   return (
     <>
       <section className='hero__section'>
