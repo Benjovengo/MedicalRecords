@@ -103,6 +103,7 @@ describe("Clinical Data", function () {
   let deployer, account01
   let clinicalData
   let dataJSON, stringifyJSON
+  let procedureJSON, procedureStringifyJSON
 
   // Procedure
   const clinicHospital = 'The Blockchain Hospital'
@@ -123,6 +124,15 @@ describe("Clinical Data", function () {
     const ClinicalData = await ethers.getContractFactory('ClinicalData')
     clinicalData = await ClinicalData.connect(deployer).deploy()
 
+    // procedure data struct
+    procedureJSON = {
+      'clinicHospitalName': clinicHospital,
+      'procedureInfo': procedureInfo,
+      'date': date,
+      'doctorCPF': doctorCPF,
+      'authorizedUser': deployer.address
+    }
+    procedureStringifyJSON = JSON.stringify(procedureJSON)
     // vaccine data struct
     dataJSON = {
       'name': name,
@@ -158,6 +168,24 @@ describe("Clinical Data", function () {
     await clinicalData.addProcedure(clinicHospital, procedureInfo, date, doctorCPF, patientCPF, deployer.address)
     // retrieve data
     const procedureData = await clinicalData.getProcedure(patientCPF, 0)
+    expect(procedureData.clinicHospitalName).to.equal(clinicHospital)
+  })
+
+  it('Add a new encrypted procedure.', async () => {
+    const encryptedData = CryptoJS.AES.encrypt(procedureStringifyJSON, 'secret key 123').toString()
+    await clinicalData.addEncryptedProcedure(encryptedData, patientCPF)
+    const numberOfProcedures = await clinicalData.getNumberOfProcedures(patientCPF)
+    expect(numberOfProcedures[1]).to.equal(1)
+  })
+
+  it('Decrypt procedure data.', async () => {
+    const encryptedData = CryptoJS.AES.encrypt(procedureStringifyJSON, 'secret key 123').toString()
+    await clinicalData.addEncryptedProcedure(encryptedData, patientCPF)
+    const encryptedProcedureData = await clinicalData.getEncryptedProcedure(patientCPF, 0)
+    // Decrypt
+    const dataBytes  = CryptoJS.AES.decrypt(encryptedProcedureData, 'secret key 123');
+    const unencryptedStringify = dataBytes.toString(CryptoJS.enc.Utf8);
+    const procedureData = JSON.parse(unencryptedStringify)
     expect(procedureData.clinicHospitalName).to.equal(clinicHospital)
   })
 
