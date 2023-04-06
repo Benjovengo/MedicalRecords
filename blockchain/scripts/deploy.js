@@ -87,9 +87,9 @@ function createConfigJSON(_clinicalDataAddress, _authorizedAccountsAddress, _pat
 
   // Create data JSON with contents
   var data = {}
-  data[5] = [] //localhost
+  data[31337] = [] //localhost: 31337 and goerli: 5
 
-  data[5] = {
+  data[31337] = {
     clinicalData: {
       address: _clinicalDataAddress
     },
