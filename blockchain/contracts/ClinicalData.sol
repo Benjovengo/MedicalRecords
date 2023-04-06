@@ -35,7 +35,7 @@ contract ClinicalData {
         string lab;
         string lot;
         uint256 dose;
-        uint256 totalDoses;
+        uint256 numberOfDoses;
         uint256 date;
         address authorizedUser;
     }
@@ -120,7 +120,7 @@ contract ClinicalData {
      * @param _lab the manufacturer of the vaccine
      * @param _lot the lot of the vaccine
      * @param _dose which dose was administered
-     * @param _totalDoses how many doses this vaccine takes
+     * @param _numberOfDoses how many doses this vaccine takes
      * @param _date today's date - Unix timestamp
      * @param _patientCPF the CPF of the patient
      * @param _authorizedUser the address of the user who registered the vaccine
@@ -130,7 +130,7 @@ contract ClinicalData {
         string memory _lab,
         string memory _lot,
         uint256 _dose,
-        uint256 _totalDoses,
+        uint256 _numberOfDoses,
         uint256 _date,
         uint256 _patientCPF,
         address _authorizedUser
@@ -142,7 +142,7 @@ contract ClinicalData {
             _lab,
             _lot,
             _dose,
-            _totalDoses,
+            _numberOfDoses,
             _date,
             _authorizedUser
         );
