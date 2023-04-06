@@ -22,6 +22,7 @@
   font-size: 3.5rem;
   font-weight: 300;
   line-height: normal;
+  margin-left: 1em;
   padding-bottom: 25%;
   padding-top: 20%;
 }
@@ -88,7 +89,3 @@ button:hover {
   opacity: 1;
 }
 
-
-.test {
-  width: 100%;
-}
