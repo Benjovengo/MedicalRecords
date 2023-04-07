@@ -1,4 +1,5 @@
 .employee__container {
+  margin-left: 1em;
   padding-bottom: 0%;
 }
 
@@ -10,7 +11,6 @@
 .employee__wrapper .employee__header {
   background-color: rgba(10, 10, 10, 0.55);
   color: white;
-  /* font-family: 'Playfair Display SC', serif; */
 }
 
 .employee__wrapper .employee__address {
