@@ -13,7 +13,6 @@ import { projectId } from "../../work/sensitive";
 
 // Components
 import EmployeeHeader from './components/EmployeeHeader';
-import Employee from "./components/EmployeeData";
 import Patient from "./components/PatientData";
 
 
@@ -46,7 +45,7 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
             <Col className='ms-5'>
               <WagmiConfig client={wagmiClient}>
                 <Row className="align-items-end">
-                  <Col className="d-flex justify-content-end mt-1 mb-1">
+                  <Col className="d-flex justify-content-end mt-4 mb-1">
                     <Web3Button />
                   </Col>
                 </Row>
@@ -76,11 +75,7 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
               <p className='patient__info__paragraph ms-3 me-3 mt-2'>To reload the info from the blockchain after a manual edit, click load blockchain data. This will replace the information in the first and last name fields.</p>
             </Col>
             <Col className='ms-5'>
-                <Row className="align-items-end">
-                  <Col className="d-flex justify-content-end mt-3">
-                    <Employee address={String(address)} />
-                  </Col>
-                </Row>
+                
             </Col>
           </Row>
         </Container>

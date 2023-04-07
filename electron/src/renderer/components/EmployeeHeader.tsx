@@ -47,22 +47,10 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
   
   return (
     <>
-      <Container className='employee__container'>
+      <Container fluid className='employee__container'>
         <form>
           <Row>
-            <Col xs={6}>
-              <Row>
-                <Col>
-                  <input type="text" id="employeeAddress" name="employeeAddress" required />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <label className='patient__label' htmlFor="employeeAddress">MetaMask Address</label>
-                </Col>
-              </Row>
-            </Col>
-            <Col>
+            <Col xs={4}>
               <Row>
                 <Col>
                   <input type="text" id="employeeFirstName" name="employeeFirstName" required />
@@ -86,23 +74,29 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
                 </Col>
               </Row>
             </Col>
+            <Col>
+              <Row>
+                <Col>
+                  <input type="text" id="employeeCPF" name="employeeCPF" placeholder='000.000.000-00' required />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <label className='patient__label' htmlFor="employeeCPF">CPF Number</label>
+                </Col>
+              </Row>
+            </Col>
           </Row>
           <Row>
-
-
-            <Col xs={4}>
-              <Row className='mb-2'>
+            <Col xs={6}>
+              <Row>
                 <Col>
-                  <Row>
-                    <Col>
-                      <input type="text" id="employeeCPF" name="employeeCPF" placeholder='000.000.000-00' required />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <label className='patient__label' htmlFor="employeeCPF">CPF Number</label>
-                    </Col>
-                  </Row>
+                  <input type="text" id="employeeAddress" name="employeeAddress" required />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <label className='patient__label' htmlFor="employeeAddress">MetaMask Address</label>
                 </Col>
               </Row>
             </Col>
@@ -111,16 +105,8 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
               <label className='authorized__label' htmlFor="authorizedCheckbox">Is authorized?</label>
             </Col>
             <Col className='text-end'>
-              <button className='header__add__button'>Add/Update</button>
+              <button className='header__add__button'>Add/Update Employee</button>
             </Col>
-
-
-
-
-
-
-
-
           </Row>
         </form>
       </Container>
