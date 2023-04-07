@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Container, Row, Col } from "reactstrap";
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
@@ -12,6 +13,8 @@ import { projectId } from "../../work/sensitive";
 
 // Components
 import Employee from "./components/EmployeeData";
+import Patient from "./components/PatientData";
+
 
 /**
  * Web3Modal
@@ -29,6 +32,7 @@ const ethereumClient = new EthereumClient(wagmiClient, chains)
 
 const MedicalRecordsPage: React.FunctionComponent = () => {
   const { address } = useAccount()
+  const [sharedCPF, setSharedCPF] = useState('000.000.000-00')
 
   return (
     <>
@@ -52,7 +56,8 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
         <Container fluid>
           <Row className='mt-3 mb-3'>
             <Col>
-              Patient Section
+            <Patient sharedCPF={sharedCPF} setSharedCPF={setSharedCPF} />
+              <p className='patient__info__paragraph ms-3 me-3 mt-2'>To reload the info from the blockchain after a manual edit, click load blockchain data. This will replace the information in the first and last name fields.</p>
             </Col>
             <Col className='ms-5'>
               <WagmiConfig client={wagmiClient}>
