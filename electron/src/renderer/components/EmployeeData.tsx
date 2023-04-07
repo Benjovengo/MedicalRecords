@@ -32,6 +32,19 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
     // Execute callback function
     connectEmployee(address)
   }, [address]);
+
+
+  useEffect(() => {
+    // Authorization checkbox
+    const authorizeCheckbox = document.getElementById("authorizedCheckbox") as HTMLInputElement
+    authorizeCheckbox.addEventListener('change', async () => {
+      if (authorizeCheckbox.checked) {
+        await authorizedAccounts.authorizePerson(address)
+      } else {
+        await authorizedAccounts.deauthorizePerson(address)
+      }
+    })
+  }, []);
   
   
   const connectEmployee = async (_address: string) => {
