@@ -10,6 +10,9 @@ import './App.css';
 // Sensitive information
 import { projectId } from "../../work/sensitive";
 
+// Components
+import Employee from "./components/EmployeeData";
+
 /**
  * Web3Modal
  * MetaMask interaction
@@ -60,7 +63,7 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
                 </Row>
                 <Row className="align-items-end">
                   <Col className="d-flex justify-content-end mt-3">
-                    Employee Section
+                    <Employee address={String(address)} />
                   </Col>
                 </Row>
               </WagmiConfig>
