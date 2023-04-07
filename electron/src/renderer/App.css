@@ -45,7 +45,7 @@
 
 body {
   
-  background: radial-gradient(at 40% 10%, rgba(198, 160, 149, 0.25) 0px, transparent 50%),
+  background: radial-gradient(at 40% 10%, rgba(198, 160, 149, 0.35) 0px, transparent 50%),
   radial-gradient(at 80% 0%, rgba(187, 174, 196, 0.35) 0px, transparent 50%),
   radial-gradient(at 0% 25%, rgba(185, 169, 189, 0.35) 0px, transparent 50%),
   radial-gradient(at 80% 25%, rgba(235, 219, 207, 0.35) 0px, transparent 50%),
