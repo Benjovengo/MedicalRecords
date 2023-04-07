@@ -1,0 +1,110 @@
+.employee__container {
+  margin-left: 1em;
+  margin-top: 0.25em;
+  padding-bottom: 0%;
+  width: 100%;
+}
+
+.employee__container input[type='text'] {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #395563;
+  display: inline;
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0 0.25em;
+  width: 100%;
+}
+
+.employee__container input:focus {
+  background: #F5F5F550;
+  outline: 0px solid #2e87e5;
+}
+
+.employee__container label {
+  display: inline-block;
+  font-size: 0.7rem;
+  margin: 0;
+  margin-bottom: 0;
+  padding: 0;
+  width: max-content;
+}
+
+.employee__container .row {
+  margin: 0;
+  padding: 0;
+}
+
+.employee__container .col {
+  margin: 0;
+  padding: 0 0.25em;
+}
+
+
+.header__add__button {
+  padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.employee__wrapper {
+  background-color: rgba(219, 207, 229, 0.8);
+  font-size: 0.9rem;
+}
+
+.employee__wrapper .employee__header {
+  background-color: rgba(10, 10, 10, 0.55);
+  color: white;
+}
+
+.employee__wrapper .employee__address {
+  font-size: 0.75rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.employee__wrapper .employee__authorization {
+  background-color: rgba(78, 67, 77, 0.52);
+}
+
+.employee__wrapper label {
+  display: inline-block;
+  font-size: 0.7rem;
+  margin: 0;
+  margin-bottom: 0;
+  padding: 0;
+  width: max-content;
+}
+
+.employee__wrapper input[type='text'] {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #395563;
+  display: inline;
+  margin: 0;
+  padding: 0 0.25em;
+  width: 100%;
+}
+
+.employee__wrapper input:focus {
+  background: #F5F5F5;
+  outline: 0px solid #2e87e5;
+}
+
+.employee__wrapper .checkbox_style {
+  display: inline-block;
+}
+
+.employee__wrapper .authorized__label {
+  color: #000;
+  font-size: 1rem;
+  margin-left: 0.2em;
+}

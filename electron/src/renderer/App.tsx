@@ -12,6 +12,7 @@ import './App.css';
 import { projectId } from "../../work/sensitive";
 
 // Components
+import EmployeeHeader from './components/EmployeeHeader';
 import Employee from "./components/EmployeeData";
 import Patient from "./components/PatientData";
 
@@ -39,8 +40,8 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
       <section className='hero__section'>
         <Container fluid>
           <Row className='header__section'>
-            <Col>
-              Employee Section
+            <Col xs={9}>
+              <EmployeeHeader address={String(address)} />
             </Col>
             <Col className='ms-5'>
               <WagmiConfig client={wagmiClient}>
