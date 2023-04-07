@@ -1,0 +1,60 @@
+.patient__wrapper {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.patient__wrapper h4 {
+  color: #383532;
+}
+
+.patient__form {
+  background-color: rgba(244, 244, 244, 0.5);
+  border-radius: 5px;
+  margin: 0 1em;
+  padding: 0.25em 1em 0.5em 1em;
+}
+
+.patient__label {
+  color: #395563;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 0.25em;
+  padding: 0;
+  width: max-content;
+}
+
+.patient__form input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #395563;
+  margin: 0;
+  padding: 0 0.25em;
+  width: 8em;
+}
+
+.patient__form input:focus {
+  background: #e5e5e5;
+  outline: 0px solid #2e87e5;
+}
+
+.load__data {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0;
+  overflow: hidden;
+  outline: none;
+  padding: 0.25em;
+}
+
+
+.patient__form .wide__label {
+  width: 100%;
+}

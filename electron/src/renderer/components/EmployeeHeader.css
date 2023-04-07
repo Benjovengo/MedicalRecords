@@ -1,0 +1,61 @@
+.employee__container {
+  color: #f4f4f4;
+  margin: 0em;
+  margin-top: 0.25em;
+  padding: 0;
+  width: 100%;
+}
+
+.employee__container input[type='text'] {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid rgba(219, 207, 229, 0.8);
+  color: #f4f4f4;
+  display: inline;
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0 0.25em;
+  width: 100%;
+}
+
+.employee__container input:focus {
+  background: #F5F5F550;
+  outline: 0px solid #2e87e5;
+}
+
+.employee__container label {
+  display: inline-block;
+  font-size: 0.7rem;
+  margin: 0;
+  margin-bottom: 0;
+  padding: 0;
+  width: max-content;
+}
+
+.employee__container .row {
+  margin: 0;
+  padding: 0;
+}
+
+.employee__container .col {
+  margin: 0;
+  padding: 0 0.25em;
+}
+
+
+.header__add__button {
+  padding: 0;
+}
+
+.employee__container .patient__label {
+  color: rgba(219, 207, 229, 0.8);
+  font-weight: normal;
+}
+
+.employee__container button {
+  border-radius: 0;
+  font-size: 0.9rem;
+  font-weight: normal;
+  margin-top: 0.25em;
+  padding: 0.25em 0.5em;
+}
