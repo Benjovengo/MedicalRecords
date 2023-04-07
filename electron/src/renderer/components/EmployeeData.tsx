@@ -43,13 +43,13 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
     lastNameInput.value = person.lastName
     let employeeCPF = (document.getElementById("employeeCPF") as HTMLInputElement)
     employeeCPF.value = cpfFormatting(person.CPF)
-    /* let authorizedCheckbox = (document.getElementById("authorizedCheckbox") as HTMLInputElement)
+    let authorizedCheckbox = (document.getElementById("authorizedCheckbox") as HTMLInputElement)
     authorizedCheckbox.checked = person.isAuthorized
     let authorization = 'This account is NOT authorized'
     if (person.isAuthorized) {
       authorization = 'This account is authorized!'
     }
-    document.getElementById('isAuthorized')!.innerHTML = authorization */
+    document.getElementById('isAuthorized')!.innerHTML = authorization
   }
 
 
@@ -65,6 +65,18 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
     return formattedCPF
   }
 
+
+  const formatEmployeeCPF = async (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    // Form data
+    const employeeCPF = (document.getElementById("employeeCPF") as HTMLInputElement).value
+    // Remove all non-numeric characters from the input value
+    const employeeNumericCPF = employeeCPF.replace(/\D/g, '');
+    // format CPF
+    let CPFInput = (document.getElementById("employeeCPF") as HTMLInputElement)
+    CPFInput.value = cpfFormatting(employeeNumericCPF)
+  }
+  
 
   return (
     <>
@@ -115,7 +127,7 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
                     <Col>
                       <Row>
                         <Col>
-                          <input type="text" id="employeeCPF" name="employeeCPF"  placeholder='000.000.000-00' required />
+                          <input type="text" id="employeeCPF" name="employeeCPF" onChange={(event: any) => formatEmployeeCPF(event)} placeholder='000.000.000-00' required />
                         </Col>
                       </Row>
                       <Row>
