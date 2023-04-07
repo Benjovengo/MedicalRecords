@@ -17,6 +17,10 @@
   line-height: normal;
 }
 
+.header__section {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
 .hero__header {
   color: #FFF;
   font-size: 3.5rem;

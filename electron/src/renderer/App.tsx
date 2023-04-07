@@ -38,6 +38,21 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
     <>
       <section className='hero__section'>
         <Container fluid>
+          <Row className='header__section'>
+            <Col>
+              Employee Section
+            </Col>
+            <Col className='ms-5'>
+              <WagmiConfig client={wagmiClient}>
+                <Row className="align-items-end">
+                  <Col className="d-flex justify-content-end mt-1 mb-1">
+                    <Web3Button />
+                  </Col>
+                </Row>
+              </WagmiConfig>
+              <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+            </Col>
+          </Row>
           <Row className='align-items-center'>
             <Col lg="6" md="6">
               <div className="hero__content">
@@ -60,19 +75,11 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
               <p className='patient__info__paragraph ms-3 me-3 mt-2'>To reload the info from the blockchain after a manual edit, click load blockchain data. This will replace the information in the first and last name fields.</p>
             </Col>
             <Col className='ms-5'>
-              <WagmiConfig client={wagmiClient}>
-                <Row className="align-items-end">
-                  <Col className="d-flex justify-content-end mt-3">
-                    <Web3Button />
-                  </Col>
-                </Row>
                 <Row className="align-items-end">
                   <Col className="d-flex justify-content-end mt-3">
                     <Employee address={String(address)} />
                   </Col>
                 </Row>
-              </WagmiConfig>
-              <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
             </Col>
           </Row>
         </Container>
