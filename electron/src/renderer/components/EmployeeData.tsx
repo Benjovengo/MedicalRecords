@@ -76,7 +76,23 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
     let CPFInput = (document.getElementById("employeeCPF") as HTMLInputElement)
     CPFInput.value = cpfFormatting(employeeNumericCPF)
   }
-  
+
+
+  const updateEmployeeInfo = async (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const firstName = (document.getElementById("employeeFirstName") as HTMLInputElement).value
+    const lastName = (document.getElementById("employeeLastName") as HTMLInputElement).value
+    const employeeCPF = (document.getElementById("employeeCPF") as HTMLInputElement).value
+    const date = Math.floor(new Date().getTime() / 1000)
+    
+    // Remove all non-numeric characters from the input value
+    const employeeNumericCPF = employeeCPF.replace(/\D/g, '');
+    
+    // update info
+    await authorizedAccounts.setAuthorizedPerson(firstName, lastName, employeeNumericCPF, date, address)
+    alert('Added/Updated Employee')
+  }
+
 
   return (
     <>
@@ -143,7 +159,7 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
                   <label className='authorized__label' htmlFor="authorizedCheckbox">Is authorized?</label>
                 </Col>
                 <Col>
-                  {/* <button onClick={(event: any) => updateEmployeeInfo(event)}>Add/Update</button> */}
+                  <button onClick={(event: any) => updateEmployeeInfo(event)}>Add/Update</button>
                 </Col>
               </Row>
             </Row>
