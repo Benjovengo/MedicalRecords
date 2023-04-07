@@ -213,7 +213,7 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
                   <input className='checkbox_style' type="checkbox" id="authorizedCheckbox" name="authorizedCheckbox" defaultValue="true"/>
                   <label className='authorized__label' htmlFor="authorizedCheckbox">Is authorized?</label>
                 </Col>
-                <Col>
+                <Col className='text-end'>
                   <button onClick={(event: any) => updateEmployeeInfo(event)}>Add/Update</button>
                 </Col>
               </Row>
