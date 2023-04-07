@@ -11,12 +11,25 @@ import { ALCHEMY_API_KEY, PRIVATE_KEY, HARDHAT_ACCOUNT01_PRIVATE_KEY } from '../
 import './PatientData.css'
 
 
+/**
+ * Interface for the Patient component
+ * 
+ * @param sharedCPF the CPF of the patient to be shared with other components
+ * @param setSharedCPF the useState function to set a new shared CPF
+ */
 interface patientProps {
   sharedCPF: string;
   setSharedCPF: (value: string) => void;
 }
 
 
+/**
+ * The main function of the Patient component
+ * 
+ * @param sharedCPF the CPF of the patient to be shared with other components
+ * @param setSharedCPF the useState function to set a new shared CPF
+ * @returns HTML component to display the personal information of a patient
+ */
 const Patient: React.FunctionComponent<patientProps> = ({ sharedCPF, setSharedCPF }) => {
   // Setup provider and network - Alchemy
   /* const alchemyProvider = new ethers.providers.AlchemyProvider("goerli", ALCHEMY_API_KEY);
@@ -29,6 +42,11 @@ const Patient: React.FunctionComponent<patientProps> = ({ sharedCPF, setSharedCP
   const patientsData = new ethers.Contract(config[31337].patientsData.address, PatientsData, signer)
 
 
+  /**
+   * Add or update the patient personal information on the blockchain based on the HTML inputs
+   * 
+   * @param event mouse click event
+   */
   const updatePatientInfo = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault()
     // Get today's date as Unix epoch
@@ -46,6 +64,11 @@ const Patient: React.FunctionComponent<patientProps> = ({ sharedCPF, setSharedCP
   }
 
 
+  /**
+   * Retrieve the patient personal information from the blockchain and update the respective HTML components
+   * 
+   * @param event 
+   */
   const getPatientInfo = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault()
     // Form data
@@ -57,7 +80,9 @@ const Patient: React.FunctionComponent<patientProps> = ({ sharedCPF, setSharedCP
     CPFInput.value = cpfFormatting(patientNumericCPF)
     setSharedCPF(patientNumericCPF)
     if (patientNumericCPF.length == 11) {
+      // Retrieve the patient personal information from the blockchain
       const loadData = await patientsData.getPatient(patientNumericCPF)
+      // Update the respective HTML components
       let firstNameInput = (document.getElementById("patientFirstName") as HTMLInputElement)
       firstNameInput.value = loadData.firstName
       let lastNameInput = (document.getElementById("patientLastName") as HTMLInputElement)
@@ -66,6 +91,12 @@ const Patient: React.FunctionComponent<patientProps> = ({ sharedCPF, setSharedCP
   }
 
 
+  /**
+   * Formats an 11-digit number as ***.***.***-**
+   * 
+   * @param CPF the string containing an 11-digit number - digits only
+   * @returns formatted CPF as ***.***.***-**
+   */
   const cpfFormatting = (CPF: string) => {
     let formattedCPF = CPF
     // Add a period after the third and sixth digits
