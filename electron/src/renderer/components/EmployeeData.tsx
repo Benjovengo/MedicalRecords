@@ -73,7 +73,8 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
    * @param _address the address of the employee connected via MetaMask
    */
   const connectEmployee = async (_address: string) => {
-    //console.log('Address: ', _address)
+    let employeeAddress = (document.getElementById("employeeAddress") as HTMLInputElement)
+    employeeAddress.value = _address
     const person = await authorizedAccounts.getAuthorizedPerson(_address)
     let firstNameInput = (document.getElementById("employeeFirstName") as HTMLInputElement)
     firstNameInput.value = person.firstName
@@ -135,6 +136,7 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
   const updateEmployeeInfo = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault()
     // Get data from the input fields
+    const employeeAddress = (document.getElementById("employeeAddress") as HTMLInputElement).value
     const firstName = (document.getElementById("employeeFirstName") as HTMLInputElement).value
     const lastName = (document.getElementById("employeeLastName") as HTMLInputElement).value
     const employeeCPF = (document.getElementById("employeeCPF") as HTMLInputElement).value
@@ -144,7 +146,7 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
     const employeeNumericCPF = employeeCPF.replace(/\D/g, '');
     
     // Add or update info on the blockchain
-    await authorizedAccounts.setAuthorizedPerson(firstName, lastName, employeeNumericCPF, date, address)
+    await authorizedAccounts.setAuthorizedPerson(firstName, lastName, employeeNumericCPF, date, employeeAddress)
     alert('Added/Updated Employee')
   }
 
@@ -159,20 +161,30 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
                 Employee connected to <i>localhost</i>
               </Col>
             </Row>
-            <Row>
+            <Row className='mt-2'>
+              <Col>
+                <Row>
+                  <Col>
+                    <input type="text" id="employeeAddress" name="employeeAddress" required />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <label className='patient__label' htmlFor="employeeAddress">MetaMask Address</label>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+            <Row className='mt-2'>
               <Col xs={5}>
                 <Row>
                   <Col>
-                    <Row>
-                      <Col>
-                        <input type="text" id="employeeFirstName" name="employeeFirstName" required />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label className='patient__label' htmlFor="employeeFirstName">First Name</label>
-                      </Col>
-                    </Row>
+                    <input type="text" id="employeeFirstName" name="employeeFirstName" required />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <label className='patient__label' htmlFor="employeeFirstName">First Name</label>
                   </Col>
                 </Row>
               </Col>
