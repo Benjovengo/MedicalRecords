@@ -11,11 +11,22 @@ import { ALCHEMY_API_KEY, PRIVATE_KEY, HARDHAT_ACCOUNT01_PRIVATE_KEY } from '../
 import './EmployeeData.css'
 
 
+/**
+ * Interface for the Employee component
+ * 
+ * @param address the address of the connected MetaMask account
+ */
 interface employeeProps {
   address: string;
 }
 
 
+/**
+ * Component to display the employee personal information.
+ * 
+ * @param address string containing the address of the connected MetaMask account
+ * @returns HTML component
+ */
 const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
   // Get today's date
   let currentDate = new Date();
@@ -28,12 +39,21 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
   const authorizedAccounts = new ethers.Contract(config[31337].authorizedAccounts.address, AuthorizedAccounts, signer)
   
   
+  /**
+   * Execute functions on any change in the address of the account connected to MetaMask
+   */
   useEffect(() => {
     // Execute callback function
     connectEmployee(address)
   }, [address]);
 
 
+  /**
+   * Add a listener on the checkbox to update the authorization status of the connected account
+   * 
+   * @dev of course it is not supposed to be implemented like this in a production app.
+   * @dev this implementation is just to show how to update the blockchain on every change of a checkbox.
+   */
   useEffect(() => {
     // Authorization checkbox
     const authorizeCheckbox = document.getElementById("authorizedCheckbox") as HTMLInputElement
@@ -47,6 +67,11 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
   }, []);
   
   
+  /**
+   * Retrieve the information about the employee from the blockchain and update the respective HTML elements.
+   * 
+   * @param _address the address of the employee connected via MetaMask
+   */
   const connectEmployee = async (_address: string) => {
     //console.log('Address: ', _address)
     const person = await authorizedAccounts.getAuthorizedPerson(_address)
@@ -66,6 +91,12 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
   }
 
 
+  /**
+   * Formats an 11-digit number as ***.***.***-**
+   * 
+   * @param CPF the string containing an 11-digit number - digits only
+   * @returns formatted CPF as ***.***.***-**
+   */
   const cpfFormatting = (CPF: String) => {
     let CPFNumber = Number(CPF)
     let formattedCPF = String(CPFNumber)
@@ -79,6 +110,11 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
   }
 
 
+  /**
+   * Format the CPF while it is being typed
+   * 
+   * @param event 
+   */
   const formatEmployeeCPF = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault()
     // Form data
@@ -91,17 +127,23 @@ const Employee: React.FunctionComponent<employeeProps> = ({ address }) => {
   }
 
 
+  /**
+   * Add or update the information about an employee on the blockchain.
+   * 
+   * @param event 
+   */
   const updateEmployeeInfo = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault()
+    // Get data from the input fields
     const firstName = (document.getElementById("employeeFirstName") as HTMLInputElement).value
     const lastName = (document.getElementById("employeeLastName") as HTMLInputElement).value
     const employeeCPF = (document.getElementById("employeeCPF") as HTMLInputElement).value
     const date = Math.floor(new Date().getTime() / 1000)
     
-    // Remove all non-numeric characters from the input value
+    // Remove all non-numeric characters from the CPF input value
     const employeeNumericCPF = employeeCPF.replace(/\D/g, '');
     
-    // update info
+    // Add or update info on the blockchain
     await authorizedAccounts.setAuthorizedPerson(firstName, lastName, employeeNumericCPF, date, address)
     alert('Added/Updated Employee')
   }
