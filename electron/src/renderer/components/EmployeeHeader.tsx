@@ -10,6 +10,8 @@ import { ALCHEMY_API_KEY, PRIVATE_KEY, HARDHAT_ACCOUNT01_PRIVATE_KEY } from '../
 /** Stylesheet */
 import './EmployeeHeader.css'
 
+/** Scripts */
+import cpfFormatting from 'renderer/scripts/cpfFormatting';
 
 /**
  * Interface for the Employee component
@@ -44,6 +46,35 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
   const authorizedAccounts = new ethers.Contract(config[31337].authorizedAccounts.address, AuthorizedAccounts, signer)
   
   
+  /**
+     * Execute functions on any change in the address of the account connected to MetaMask
+     */
+  useEffect(() => {
+    // Retrieve employee data from the blockchain and display on the header
+    retrieveEmployeeData(address)
+  }, [address]);
+
+
+  /**
+   * Retrieve the information about the employee from the blockchain and update the respective HTML elements.
+   * 
+   * @param _address the address of the employee connected via MetaMask
+   */
+  const retrieveEmployeeData = async (_address: string) => {
+    let employeeAddress = (document.getElementById("employeeAddress") as HTMLInputElement)
+    employeeAddress.value = _address
+    const employeeInfo = await authorizedAccounts.getAuthorizedPerson(_address)
+    let firstNameInput = (document.getElementById("employeeFirstName") as HTMLInputElement)
+    firstNameInput.value = employeeInfo.firstName
+    let lastNameInput = (document.getElementById("employeeLastName") as HTMLInputElement)
+    lastNameInput.value = employeeInfo.lastName
+    let employeeCPF = (document.getElementById("employeeCPF") as HTMLInputElement)
+    employeeCPF.value = cpfFormatting(employeeInfo.CPF)
+    let authorizedCheckbox = (document.getElementById("authorizedCheckbox") as HTMLInputElement)
+    authorizedCheckbox.checked = employeeInfo.isAuthorized
+  }
+
+
   
   return (
     <>
@@ -88,7 +119,7 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
             </Col>
           </Row>
           <Row>
-            <Col xs={6}>
+            <Col xs={7}>
               <Row>
                 <Col>
                   <input type="text" id="employeeAddress" name="employeeAddress" required />
@@ -101,7 +132,7 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
               </Row>
             </Col>
             <Col>
-              <input className='checkbox_style ms-3' type="checkbox" id="authorizedCheckbox" name="authorizedCheckbox" defaultValue="true"/>
+              <input className='checkbox_style ms-2' type="checkbox" id="authorizedCheckbox" name="authorizedCheckbox" defaultValue="true"/>
               <label className='patient__label ms-1' htmlFor="authorizedCheckbox">Is authorized?</label>
             </Col>
             <Col className='text-end'>
