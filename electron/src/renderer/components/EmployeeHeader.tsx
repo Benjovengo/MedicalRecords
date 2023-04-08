@@ -44,8 +44,8 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
   const signer = new ethers.Wallet(HARDHAT_ACCOUNT01_PRIVATE_KEY, provider);
   // Javascript "version" of the smart contract
   const authorizedAccounts = new ethers.Contract(config[31337].authorizedAccounts.address, AuthorizedAccounts, signer)
-  
-  
+
+
   /**
      * Execute functions on any change in the address of the account connected to MetaMask
      */
@@ -55,6 +55,25 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
   }, [address]);
 
 
+  /**
+   * Add a listener on the checkbox to update the authorization status of the connected account
+   * 
+   * @dev of course it is not supposed to be implemented like this in a production app.
+   * @dev this implementation is just to show how to update the blockchain on every change of a checkbox.
+   */
+  useEffect(() => {
+    // Authorization checkbox
+    const authorizeCheckbox = document.getElementById("authorizedCheckbox") as HTMLInputElement
+    authorizeCheckbox.addEventListener('change', async () => {
+      if (authorizeCheckbox.checked) {
+        await authorizedAccounts.authorizePerson(address)
+      } else {
+        await authorizedAccounts.deauthorizePerson(address)
+      }
+    })
+  }, []);
+
+  
   /**
    * Retrieve the information about the employee from the blockchain and update the respective HTML elements.
    * 
