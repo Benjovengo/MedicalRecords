@@ -101,8 +101,8 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
               </Row>
             </Col>
             <Col>
-              <input className='checkbox_style' type="checkbox" id="authorizedCheckbox" name="authorizedCheckbox" defaultValue="true"/>
-              <label className='authorized__label' htmlFor="authorizedCheckbox">Is authorized?</label>
+              <input className='checkbox_style ms-3' type="checkbox" id="authorizedCheckbox" name="authorizedCheckbox" defaultValue="true"/>
+              <label className='patient__label ms-1' htmlFor="authorizedCheckbox">Is authorized?</label>
             </Col>
             <Col className='text-end'>
               <button className='header__add__button'>Add/Update Employee</button>
