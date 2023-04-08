@@ -75,6 +75,22 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
   }
 
 
+  /**
+   * Format the CPF while it is being typed
+   * 
+   * @param event 
+   */
+  const formatEmployeeCPF = async (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    // Form data
+    const employeeCPF = (document.getElementById("employeeCPF") as HTMLInputElement).value
+    // Remove all non-numeric characters from the input value
+    const employeeNumericCPF = employeeCPF.replace(/\D/g, '');
+    // format CPF
+    let CPFInput = (document.getElementById("employeeCPF") as HTMLInputElement)
+    CPFInput.value = cpfFormatting(employeeNumericCPF)
+  }
+  
   
   return (
     <>
@@ -108,7 +124,7 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
             <Col>
               <Row>
                 <Col>
-                  <input type="text" id="employeeCPF" name="employeeCPF" placeholder='000.000.000-00' required />
+                  <input type="text" id="employeeCPF" name="employeeCPF" onChange={(event: any) => formatEmployeeCPF(event)} placeholder='000.000.000-00' required />
                 </Col>
               </Row>
               <Row>
