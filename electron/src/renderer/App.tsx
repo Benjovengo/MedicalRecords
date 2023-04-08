@@ -71,11 +71,10 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
         <Container fluid>
           <Row className='mt-3 mb-3'>
             <Col>
-            <Patient sharedCPF={sharedCPF} setSharedCPF={setSharedCPF} />
-              <p className='patient__info__paragraph ms-3 me-3 mt-2'>To reload the info from the blockchain after a manual edit, click load blockchain data. This will replace the information in the first and last name fields.</p>
             </Col>
             <Col className='ms-5'>
-                
+              <Patient sharedCPF={sharedCPF} setSharedCPF={setSharedCPF} />
+              <p className='patient__info__paragraph ms-3 me-3 mt-2'>To reload the info from the blockchain after a manual edit, click load blockchain data. This will replace the information in the first and last name fields.</p>
             </Col>
           </Row>
         </Container>
