@@ -90,12 +90,40 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
     let CPFInput = (document.getElementById("employeeCPF") as HTMLInputElement)
     CPFInput.value = cpfFormatting(employeeNumericCPF)
   }
-  
-  
+
+
+  /**
+   * Add or update the information about an employee on the blockchain.
+   * 
+   * @param event 
+   */
+  const addUpdateEmployeeInfo = async (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    // Get data from the input fields
+    const employeeAddress = (document.getElementById("employeeAddress") as HTMLInputElement).value
+    const firstName = (document.getElementById("employeeFirstName") as HTMLInputElement).value
+    const lastName = (document.getElementById("employeeLastName") as HTMLInputElement).value
+    const employeeCPF = (document.getElementById("employeeCPF") as HTMLInputElement).value
+    const date = Math.floor(new Date().getTime() / 1000)
+    
+    // Remove all non-numeric characters from the CPF input value
+    const employeeNumericCPF = employeeCPF.replace(/\D/g, '');
+    
+    // check if the CPF is valid - test only its length
+    if (employeeNumericCPF.length === 11) {
+      // Add or update info on the blockchain
+      await authorizedAccounts.setAuthorizedPerson(firstName, lastName, employeeNumericCPF, date, employeeAddress)
+      alert('Added/Updated Employee')
+    } else {
+      alert('Invalid CPF number!')
+    }
+  }
+
+
   return (
     <>
       <Container fluid className='employee__container'>
-        <form>
+        <form onSubmit={addUpdateEmployeeInfo}>
           <Row>
             <Col xs={4}>
               <Row>
@@ -152,7 +180,7 @@ const EmployeeHeader: React.FunctionComponent<employeeProps> = ({ address }) => 
               <label className='patient__label ms-1' htmlFor="authorizedCheckbox">Is authorized?</label>
             </Col>
             <Col className='text-end'>
-              <button className='header__add__button'>Add/Update Employee</button>
+              <button className='header__add__button submit'>Add/Update Employee</button>
             </Col>
           </Row>
         </form>
