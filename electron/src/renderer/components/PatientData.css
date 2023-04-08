@@ -1,7 +1,8 @@
 .patient__wrapper {
+  background-color: #b65773;
   font-size: 1rem;
   margin: 0;
-  padding: 0;
+  padding: 1em;
 }
 
 .patient__wrapper h4 {
@@ -10,8 +11,8 @@
 
 .patient__form {
   background-color: rgba(244, 244, 244, 0.5);
-  border-radius: 5px;
-  margin: 0 1em;
+  border-radius: 0px;
+  margin: 0 0em;
   padding: 0.25em 1em 0.5em 1em;
 }
 

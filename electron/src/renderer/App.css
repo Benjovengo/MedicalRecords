@@ -107,3 +107,9 @@ button:hover {
   margin-right: 2em;
   padding-bottom: 400px;
 }
+
+.patient__container {
+  background-color: transparent;
+  margin: -7em 3em 0 3em;
+  padding: 0 1em;
+}
