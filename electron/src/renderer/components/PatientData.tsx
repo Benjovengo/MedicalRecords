@@ -147,6 +147,11 @@ const Patient: React.FunctionComponent<patientProps> = ({ sharedCPF, setSharedCP
             </Col>
           </Row>
         </form>
+        <Row>
+          <Col>
+          <p className='patient__info__paragraph ms-3 me-3 mt-2'>To reload the info from the blockchain after a manual edit, click load blockchain data. This will replace the information in the first and last name fields.</p>
+          </Col>
+        </Row>
       </Container>
     </>
   )
