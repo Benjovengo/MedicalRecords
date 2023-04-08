@@ -97,3 +97,13 @@ button:hover {
   transform: scale(1.05);
 }
 
+.gif__animation {
+  background-image: url('../../assets/office_light.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 2em;
+  padding: 0;
+  margin-right: 2em;
+  padding-bottom: 400px;
+}
