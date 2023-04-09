@@ -12,6 +12,7 @@ import './App.css';
 import { projectId } from "../../work/sensitive";
 
 // Components
+import AddClinicalData from './components/AddClinicalData';
 import EmployeeHeader from './components/EmployeeHeader';
 import Patient from "./components/PatientData";
 
@@ -74,6 +75,17 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
             </Col>
             <Col className='patient__container ps-5 ms-5'>
               <Patient sharedCPF={sharedCPF} setSharedCPF={setSharedCPF} />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section>
+        <Container fluid>
+          <Row className='mt-3 mb-3'>
+            <Col>
+              <AddClinicalData address={String(address)} sharedCPF={sharedCPF}/>
+            </Col>
+            <Col className='gif__animation'>
             </Col>
           </Row>
         </Container>
