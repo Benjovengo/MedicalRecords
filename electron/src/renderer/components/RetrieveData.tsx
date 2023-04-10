@@ -174,12 +174,12 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
   return (
     <>
       <div className="retrieve__data__wrapper">
-        <Row className='align-items-center mt-3'>
+        <Row className='data__wrapper align-items-center mt-3'>
           <Col className='d-flex justify-content-center'>
             <h4 className='ms-3'>Blockchain Records</h4>
           </Col>
         </Row>
-        <Row>
+        <Row className='data__wrapper'>
           <Col>
             <Row className="justify-content-center">
               <Col className='text-center'>
@@ -212,42 +212,42 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
           </Col>
         </Row>
         {/* Procedures */}
-        <Row className='mt-5'>
-            <Col>
-              <h5>Procedures</h5>
-              <Row className='align-items-start'>
-                <Col className='data__col__wrapper'>
-                  <Row>
-                    <Col xs="auto" className='vertical__header'>
-                      <span>Encrypted Data</span>
-                    </Col>
-                    <Col className='data__fields'>
-                      <Row>
-                          {(encryptedProceduresData===null)? <></> : encryptedProceduresData.map((item, index) => (
-                            <Col key={index}>
-                              <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
-                            </Col>
-                          ))}
-                      </Row>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-              <Row className='align-items-start'>
-                <Col className='data__col__wrapper'>
-                  <Row>
-                    <Col xs="auto" className='vertical__header'>
-                      <span>Unencrypted Data</span>
-                    </Col>
-                    <Col className='data__fields'>
-                      <h2>Unencrypted Placeholder.</h2>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </div>
+        <Row className='data__wrapper mt-5'>
+          <Col>
+            <h5>Procedures</h5>
+            <Row className='align-items-start data__wrapper'>
+              <Col className='data__col__wrapper'>
+                <Row>
+                  <Col xs="auto" className='vertical__header'>
+                    <span>Encrypted Data</span>
+                  </Col>
+                  <Col className='data__fields'>
+                    <Row>
+                        {(encryptedProceduresData===null)? <></> : encryptedProceduresData.map((item, index) => (
+                          <Col className='card__map' key={index}>
+                            <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
+                          </Col>
+                        ))}
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+            <Row className='align-items-start mt-3'>
+              <Col className='data__col__wrapper'>
+                <Row>
+                  <Col xs="auto" className='vertical__header'>
+                    <span>Unencrypted Data</span>
+                  </Col>
+                  <Col className='data__fields'>
+                    <h2>Unencrypted Placeholder.</h2>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
     </>
   )
 };

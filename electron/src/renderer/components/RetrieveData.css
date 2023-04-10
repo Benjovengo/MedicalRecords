@@ -1,3 +1,8 @@
+.data__wrapper {
+  margin: 0;
+}
+
+
 .retrieve__data__wrapper {
   background-color: #383532;
   color: #f0f0f0;
@@ -18,3 +23,28 @@
   padding: 0.5em 1.0em;
   text-align: left;
 }
+
+.vertical__header {
+  align-items: center;
+  background-color: #444;
+  color: #eee;
+  display: flex;
+  height: auto;
+  line-height: normal;
+  justify-content: center;
+  margin: 0;
+  margin-left: 1em;
+  padding: 0.5em 0.25em;
+  writing-mode: vertical-lr;
+}
+
+.vertical__header span {
+  font-size: 1rem;
+  transform: rotate(180deg);
+}
+
+.card__map {
+  margin: 0em;
+  padding: 0em;
+}
+
