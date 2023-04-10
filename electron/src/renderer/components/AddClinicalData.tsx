@@ -330,10 +330,10 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
               </Col>
             </Row>
             <Row>
-              <Col>
-                <div className="form__field mb-1">
+              <Col xs={3}>
+                <div className="form__number__field mb-1">
                   <Row>
-                    <label className='form__label' htmlFor="vaccineDose">Dose</label>
+                    <label className='form__number__label' htmlFor="vaccineDose">Dose</label>
                   </Row>
                   <Row>
                     <input type="number" id="vaccineDose" name="vaccineDose" defaultValue={1} required /><br/>
@@ -341,17 +341,17 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                 </div>
               </Col>
               <Col>
-                <div className="form__field mb-1">
+                <div className="form__number__field mb-1">
                   <Row>
-                    <label className='form__label' htmlFor="vaccineNumberOfDoses">Total Number of Doses</label>
+                    <label className='form__number__label' htmlFor="vaccineNumberOfDoses">Number of Doses</label>
                   </Row>
                   <Row>
                     <input type="number" id="vaccineNumberOfDoses" name="vaccineNumberOfDoses" defaultValue={1} /><br/>
                   </Row>
                 </div>
               </Col>
-              <Col>
-                <div className="form__field mb-1">
+              <Col xs={5}>
+                <div className="form__date__field mb-1">
                   <Row>
                       <label className='form__label' htmlFor="date">Date</label>
                   </Row>
