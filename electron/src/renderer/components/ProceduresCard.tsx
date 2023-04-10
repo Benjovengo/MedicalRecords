@@ -35,6 +35,19 @@ interface RetrievedData {
 const ProcedureCard: React.FC<RetrievedData> = ({ clinicHospitalName, procedureInfo, date, doctorAddress, authorizedUser, index }) => {
 
 
+  /**
+   * Format the information about the procedures to include line breaks.
+   */
+  const formatProceduresInfo = typeof procedureInfo === 'string' && procedureInfo.includes('\n') ? (
+    procedureInfo.split('\n').map((str, index) => (
+      <React.Fragment key={index}>
+        {str}
+        <br />
+      </React.Fragment>
+    ))
+  ) : procedureInfo;
+
+
   return (
     <>
     <div className="procedure__wrapper">
@@ -65,7 +78,7 @@ const ProcedureCard: React.FC<RetrievedData> = ({ clinicHospitalName, procedureI
           </Row>
           <Row>
             <Col>
-              <span>{procedureInfo}</span>
+              <span>{formatProceduresInfo}</span>
             </Col>
           </Row>
         </Row>
