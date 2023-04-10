@@ -15,6 +15,7 @@ import { projectId } from "../../work/sensitive";
 import AddClinicalData from './components/AddClinicalData';
 import EmployeeHeader from './components/EmployeeHeader';
 import Patient from "./components/PatientData";
+import RetrieveData from './components/RetrieveData';
 
 
 /**
@@ -85,6 +86,13 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
             <Col xs={6}>
               <AddClinicalData address={String(address)} sharedCPF={sharedCPF}/>
             </Col>
+          </Row>
+        </Container>
+      </section>
+      <section>
+        <Container>
+          <Row>
+            <RetrieveData sharedCPF={sharedCPF} />
           </Row>
         </Container>
       </section>
