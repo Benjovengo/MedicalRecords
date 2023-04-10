@@ -91,6 +91,22 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
     }
   }
 
+
+  /**
+   * Clear the clinical procedure form
+   * 
+   * @param event click reset button
+   */
+  const clearProcedureForm = (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (confirm('Are you sure you want to clear the form?')) {
+      const resetForm = document.getElementById('addProcedureForm') as HTMLFormElement
+      resetForm.reset();
+    }
+  }
+
+
+
   return (
     <>
       <h3>Procedures and Vaccines Data</h3>
@@ -161,7 +177,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             </Row>
             <Row>
               <Col className="d-flex justify-content-center mt-3 mb-2">
-                <button className='reset__button'>Clear Form</button>
+                <button className='reset__button' onClick={(event: any) => clearProcedureForm(event)}>Clear Form</button>
               </Col>
             </Row>
           </form>
