@@ -224,7 +224,7 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                   <Col className='data__fields'>
                     <Row>
                         {(encryptedProceduresData===null)? <></> : encryptedProceduresData.map((item, index) => (
-                          <Col className='card__map' key={index}>
+                          <Col xs={6} className='card__map' key={index}>
                             <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
                           </Col>
                         ))}
@@ -243,7 +243,7 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                   <Col className='data__fields'>
                     <Row>
                         {(proceduresData===null)? <></> : proceduresData.map((item, index) => (
-                          <Col className='card__map' key={index}>
+                          <Col xs={6} className='card__map' key={index}>
                             <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
                           </Col>
                         ))}
