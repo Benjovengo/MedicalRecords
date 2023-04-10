@@ -118,3 +118,8 @@ button:hover {
   background-color: transparent;
   margin-top: -7em;
 }
+
+.blockchain__data {
+  margin: 0;
+  padding: 0;
+}
