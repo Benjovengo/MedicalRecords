@@ -90,7 +90,7 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
         </Container>
       </section>
       <section>
-        <Container>
+        <Container fluid>
           <RetrieveData sharedCPF={sharedCPF} />
         </Container>
       </section>
