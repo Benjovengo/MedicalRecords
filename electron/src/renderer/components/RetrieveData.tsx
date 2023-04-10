@@ -176,7 +176,7 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
       <div className="retrieve__data__wrapper">
         <Row className='data__wrapper align-items-center mt-3'>
           <Col className='d-flex justify-content-center'>
-            <h4 className='ms-3'>Blockchain Records</h4>
+            <h4 className='mb-3 ms-3 mt-2'>Blockchain Records</h4>
           </Col>
         </Row>
         <Row className='data__wrapper'>
@@ -188,22 +188,22 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                     <Col>
                       <Row>
                         <Col className='col-auto'>
-                          <p><b>Patient:</b> <span id='patientInfo'></span></p>
+                          <b>Patient:</b> <span id='patientInfo'></span>
                         </Col>
                         <Col>
-                          <p><b>CPF:</b> <span id='patientCPFNumber'></span></p>
+                          <b>CPF:</b> <span id='patientCPFNumber'></span>
                         </Col>
                       </Row>
                     </Col>
                   </Row>
                   <Row className='ms-1'>
                     <Col>
-                      <p><b>Number of procedures:</b> {proceduresData.length + encryptedProceduresData.length}</p>  
+                      <b>Number of procedures:</b> {proceduresData.length + encryptedProceduresData.length}
                     </Col>
                   </Row>
                   <Row className='ms-1'>
                     <Col>
-                      <p><b>Number of vaccines:</b> {vaccinesData.length + encryptedVaccinesData.length}</p>
+                      <b>Number of vaccines:</b> {vaccinesData.length + encryptedVaccinesData.length}
                     </Col>
                   </Row>
                 </div>
@@ -212,7 +212,7 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
           </Col>
         </Row>
         {/* Procedures */}
-        <Row className='data__wrapper mt-5'>
+        <Row className='data__wrapper mt-3'>
           <Col>
             <h5>Procedures</h5>
             <Row className='align-items-start data__wrapper'>
@@ -233,7 +233,8 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                 </Row>
               </Col>
             </Row>
-            <Row className='data__wrapper align-items-start mt-3'>
+            
+            <Row className='align-items-start data__wrapper mt-3'>
               <Col className='data__col__wrapper'>
                 <Row>
                   <Col xs="auto" className='vertical__header'>
@@ -241,16 +242,17 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                   </Col>
                   <Col className='data__fields'>
                     <Row>
-                      {(proceduresData===null)? <></> : proceduresData.map((item, index) => (
-                        <div key={index}>
-                          <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={Number(item.doctorAddress)} authorizedUser={item.authorizedUser} index={index} />
-                        </div>
-                      ))}
+                        {(proceduresData===null)? <></> : proceduresData.map((item, index) => (
+                          <Col className='card__map' key={index}>
+                            <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
+                          </Col>
+                        ))}
                     </Row>
                   </Col>
                 </Row>
               </Col>
             </Row>
+            
           </Col>
         </Row>
       </div>
