@@ -223,11 +223,13 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                     <span>Encrypted Data</span>
                   </Col>
                   <Col className='data__fields'>
-                    {(encryptedProceduresData===null)? <></> : encryptedProceduresData.map((item, index) => (
-                      <div key={index}>
-                        <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
-                      </div>
-                    ))}
+                    <Row>
+                        {(encryptedProceduresData===null)? <></> : encryptedProceduresData.map((item, index) => (
+                          <Col key={index}>
+                            <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
+                          </Col>
+                        ))}
+                    </Row>
                   </Col>
                 </Row>
               </Col>
