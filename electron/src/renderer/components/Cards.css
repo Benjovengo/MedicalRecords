@@ -1,0 +1,31 @@
+.procedure__wrapper {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.procedure__wrapper p {
+  font-family: 'Playfair Display SC', serif;
+  font-weight: bold;
+  margin: 0;
+}
+
+.procedure__wrapper span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+.procedure__wrapper .authorized__address {
+  font-family: 'Roboto Mono', monospace;
+  /* font-size: 0.8rem; */
+}
+
+.item__even {
+  background-color: #e8e8e855;
+  padding: 0.5em 1em;
+}
+
+.item__odd {
+  background-color: #A0A0A055;
+  padding: 0.5em 1em;
+}
