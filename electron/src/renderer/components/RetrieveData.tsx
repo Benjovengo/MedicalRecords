@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { ethers } from 'ethers'
 
 
@@ -31,6 +31,18 @@ const patientsData = new ethers.Contract(config[31337].patientsData.address, Pat
 
 
 /**
+ * Interface for the hooks for the procedures
+ */
+interface RetrievedProceduresData {
+  clinicHospitalName: string;
+  procedureInfo: string;
+  date: number;
+  doctorAddress: number;
+  authorizedUser: string;
+}
+
+
+/**
  * Interface to receive the CPF from the PatientData section
  */
 interface patientProps {
@@ -45,10 +57,111 @@ interface patientProps {
  * @returns the React.js component to display the clinical data
  */
 const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
+  /**
+   * Hooks
+   */
+  // Hooks for the data of the procedures retrieved from the blockchain
+  const [proceduresData, setProceduresData] = useState<RetrievedProceduresData[]>([])
+  const [encryptedProceduresData, setEncryptedProceduresData] = useState<RetrievedProceduresData[]>([])
+
+
+  /**
+   * Execute functions when there is a new CPF for a new patient
+   */
+  useEffect(() => {
+    if (sharedCPF !== '000.000.000-00'){
+      getPatientInfo(sharedCPF)
+      loadAllProcedures(sharedCPF)
+    }
+  }, [sharedCPF]);
+
+
+  /**
+   * Retrieve the personal information about the patient
+   * 
+   * @param _sharedCPF the CPF of the patient
+   */
+  const getPatientInfo = async (_sharedCPF: string) => {
+    if (_sharedCPF.length == 11) {
+      const loadData = await patientsData.getPatient(_sharedCPF)
+      const fullName = loadData.firstName + ' ' + loadData.lastName
+      document.getElementById('patientInfo')!.innerHTML = `${fullName}`
+      document.getElementById('patientCPFNumber')!.innerHTML = `${cpfFormatting(_sharedCPF)}`
+    }
+  }
+
+
+  /**
+   * Retrieve the procedures from the Blockchain for a particular patient.
+   * 
+   * @param _sharedCPF the CPF of the patient
+   */
+  const loadAllProcedures = async (_sharedCPF: string) => {
+    // Load Unencrypted procedures
+    if (_sharedCPF.length === 11) {
+      const proceduresQuantity = await clinicalData.getNumberOfProcedures(_sharedCPF)
+      let proceduresArray = []
+      for (let index = 0; index < proceduresQuantity[0]; index++) { //index 0: unencrypted procedures
+        proceduresArray[index] = await clinicalData.getProcedure(_sharedCPF, index);
+      }
+      setProceduresData(proceduresArray)
+    }
+    
+    // Load and decrypt procedures
+    if (_sharedCPF.length === 11) {
+      const proceduresQuantity = await clinicalData.getNumberOfProcedures(_sharedCPF)
+      let encryptedProceduresArray = []
+      for (let index = 0; index < proceduresQuantity[1]; index++) { //index 0: unencrypted procedures
+        const loadEncryptedData = await clinicalData.getEncryptedProcedure(_sharedCPF, index)
+        const decryptedJSON = String(decryptText(loadEncryptedData))
+        encryptedProceduresArray[index] = JSON.parse(decryptedJSON)
+      }
+      setEncryptedProceduresData(encryptedProceduresArray)
+    }
+  }
+
 
   return (
     <>
-      <h1>Retrieved Data</h1>
+      <div className="retrieve__data__wrapper">
+        <Row className='align-items-center mt-3'>
+          <Col className='d-flex justify-content-center'>
+            <h4 className='ms-3'>Blockchain Records</h4>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Row className="justify-content-center">
+              <Col className='text-center'>
+                <div className='patient__records'>
+                  <Row>
+                    <Col>
+                      <Row>
+                        <Col className='col-auto'>
+                          <p><b>Patient:</b> <span id='patientInfo'></span></p>
+                        </Col>
+                        <Col>
+                          <p><b>CPF:</b> <span id='patientCPFNumber'></span></p>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                  <Row className='ms-1'>
+                    <Col>
+                      <p><b>Number of procedures:</b> {proceduresData.length + encryptedProceduresData.length}</p>  
+                    </Col>
+                  </Row>
+                  <Row className='ms-1'>
+                    <Col>
+                      <p><b>Number of vaccines:</b> {}</p>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
     </>
   )
 };
