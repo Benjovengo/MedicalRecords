@@ -13,9 +13,14 @@ import ClinicalData from '../../abis/ClinicalData.json' // contract ABI
 import config from '../../config.json' // contract addresses
 import { ALCHEMY_API_KEY, PRIVATE_KEY } from '../../../work/sensitive';
 
-// Setup provider and network
-const alchemyProvider = new ethers.providers.AlchemyProvider("goerli", ALCHEMY_API_KEY);
-const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
+// Setup provider and network - Alchemy
+/* const alchemyProvider = new ethers.providers.AlchemyProvider("goerli", ALCHEMY_API_KEY);
+const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider); */
+
+// Setup provider and signer - Localhost
+const provider = new ethers.providers.JsonRpcProvider('http://127.0.0.1:8545');
+const signer = new ethers.Wallet(HARDHAT_ACCOUNT01_PRIVATE_KEY, provider);
+
 const clinicalData = new ethers.Contract(config[31337].clinicalData.address, ClinicalData, signer)
 
 
