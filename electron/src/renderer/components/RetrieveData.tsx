@@ -43,6 +43,20 @@ interface RetrievedProceduresData {
 
 
 /**
+ * Interface for the hooks for the vaccines
+ */
+interface RetrievedVaccinesData {
+  name: string;
+  lab: string;
+  lot: string;
+  dose: number;
+  totalDoses: number;
+  date: number;
+  authorizedUser: string;
+}
+
+
+/**
  * Interface to receive the CPF from the PatientData section
  */
 interface patientProps {
@@ -63,6 +77,9 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
   // Hooks for the data of the procedures retrieved from the blockchain
   const [proceduresData, setProceduresData] = useState<RetrievedProceduresData[]>([])
   const [encryptedProceduresData, setEncryptedProceduresData] = useState<RetrievedProceduresData[]>([])
+  // Hooks for the data of the vaccines retrieved from the blockchain
+  const [vaccinesData, setVaccinesData] = useState<RetrievedVaccinesData[]>([])
+  const [encryptedVaccinesData, setEncryptedVaccinesData] = useState<RetrievedVaccinesData[]>([])
 
 
   /**
@@ -72,6 +89,7 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
     if (sharedCPF !== '000.000.000-00'){
       getPatientInfo(sharedCPF)
       loadAllProcedures(sharedCPF)
+      loadAllVaccines(sharedCPF)
     }
   }, [sharedCPF]);
 
@@ -121,6 +139,36 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
   }
 
 
+  /**
+   * Retrieve the vaccines from the Blockchain for a particular patient.
+   * 
+   * @param _sharedCPF the CPF of the patient
+   */
+  const loadAllVaccines = async (_sharedCPF: string) => {
+    // Load Unencrypted procedures
+    if (_sharedCPF.length === 11) {
+      const vaccinesQuantity = await clinicalData.getNumberOfVaccines(_sharedCPF)
+      let vaccinesArray = []
+      for (let index = 0; index < vaccinesQuantity[0]; index++) { //index 0: unencrypted procedures
+        vaccinesArray[index] = await clinicalData.getVaccine(_sharedCPF, index);
+      }
+      setVaccinesData(vaccinesArray)
+    }
+    
+    // Load and decrypt vaccines
+    if (_sharedCPF.length === 11) {
+      const vaccinesQuantity = await clinicalData.getNumberOfVaccines(_sharedCPF)
+      let encryptedVaccinesArray = []
+      for (let index = 0; index < vaccinesQuantity[1]; index++) { //index 0: unencrypted procedures
+        const loadEncryptedData = await clinicalData.getEncryptedVaccine(_sharedCPF, index)
+        const decryptedJSON = String(decryptText(loadEncryptedData))
+        encryptedVaccinesArray[index] = JSON.parse(decryptedJSON)
+      }
+      setEncryptedVaccinesData(encryptedVaccinesArray)
+    }
+  }
+
+
   return (
     <>
       <div className="retrieve__data__wrapper">
@@ -153,7 +201,7 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                   </Row>
                   <Row className='ms-1'>
                     <Col>
-                      <p><b>Number of vaccines:</b> {}</p>
+                      <p><b>Number of vaccines:</b> {vaccinesData.length + encryptedVaccinesData.length}</p>
                     </Col>
                   </Row>
                 </div>
