@@ -81,11 +81,9 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
       </section>
       <section>
         <Container fluid>
-          <Row className='mt-3 mb-3'>
-            <Col>
+          <Row className='addData__container mb-3'>
+            <Col xs={6}>
               <AddClinicalData address={String(address)} sharedCPF={sharedCPF}/>
-            </Col>
-            <Col className='gif__animation'>
             </Col>
           </Row>
         </Container>

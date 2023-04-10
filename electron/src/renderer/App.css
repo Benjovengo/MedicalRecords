@@ -113,3 +113,8 @@ button:hover {
   margin: -7em 3em 0 3em;
   padding: 0 1em;
 }
+
+.addData__container {
+  background-color: transparent;
+  margin-top: -7em;
+}

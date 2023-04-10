@@ -219,7 +219,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
 
   return (
     <>
-      <h5>Procedures and Vaccines Data</h5>
+      <h6 className='ms-3'>Procedures and Vaccines Data</h6>
       <div className='ms-3'>
         <select className='select__function' id="functionToCall" name="functionToCall" onChange={selectProcedureOrVaccine} >
           <option value="addProcedure">Add Procedure</option>
@@ -278,7 +278,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             </Row>
             <Row className="align-items-center">
               <Col className="d-flex justify-content-center mt-3 mb-2">
-                <button className='me-2' type="submit" onClick={(event: any) => addUnencryptedProcedure(event)}>Save Unencrypted Data</button>
+                <button className='me-3' type="submit" onClick={(event: any) => addUnencryptedProcedure(event)}>Save Unencrypted Data</button>
                 <button type="submit" onClick={(event: any) => addEncryptedProcedure(event)}>Save Encrypted Data</button>
               </Col>
             </Row>
@@ -363,7 +363,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             </Row>
             <Row className="align-items-center">
               <Col className="d-flex justify-content-center mt-3 mb-2">
-                <button className='me-2' type="submit" onClick={(event: any) => addUnencryptedVaccine(event)}>Save Unencrypted Data</button>
+                <button className='me-3' type="submit" onClick={(event: any) => addUnencryptedVaccine(event)}>Save Unencrypted Data</button>
                 <button type="submit" onClick={(event: any) => addEncryptVaccine(event)}>Save Encrypted Data</button>
               </Col>
             </Row>
