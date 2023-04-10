@@ -70,31 +70,51 @@ const ProcedureCard: React.FC<RetrievedData> = ({ clinicHospitalName, procedureI
       <div className={`${index % 2 === 0 ? 'item__even' : 'item__odd'}`}>
         <Row>
           <Col>
-            <p>Clinic: <span>{clinicHospitalName}</span></p>
+            <Row>
+              <span>Clinic/Hospital</span>
+            </Row>
+            <Row>
+              <p>{clinicHospitalName}</p>
+            </Row>
           </Col>
           <Col xs={4} className="text-end">
-            <p>date: <span>{unixTimestampToDate(date)}</span></p>
+            <Row>
+              <span>Date</span>
+            </Row>
+            <Row>
+              <p>{unixTimestampToDate(date)}</p>
+            </Row>
           </Col>
         </Row>
         <Row>
           <Col>
-            <p>Doctor: <span>{cpfFormatting(String(doctorAddress))}</span></p>
+            <Row>
+              <span>Doctor Id</span>
+            </Row>
+            <Row>
+              <p>{cpfFormatting(String(doctorAddress))}</p>
+            </Row>
           </Col>
         </Row>
         <Row>
           <Col>
-            <p>Registered by: <span className='authorized__address'>{authorizedUser}</span></p>
+            <Row>
+              <span>Registered by</span>
+            </Row>
+            <Row>
+              <p className='authorized__address'>{authorizedUser}</p>
+            </Row>
           </Col>
         </Row>
         <Row>
           <Row>
             <Col className='mt-3'>
-              <p>Procedure Info</p>
+              <span>Procedure Info</span>
             </Col>
           </Row>
           <Row>
             <Col>
-              <span>{formatProceduresInfo}</span>
+              <p>{formatProceduresInfo}</p>
             </Col>
           </Row>
         </Row>
