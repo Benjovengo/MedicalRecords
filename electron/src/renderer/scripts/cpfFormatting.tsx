@@ -6,7 +6,7 @@
    */
 const cpfFormatting = (CPF: String) => {
   let CPFNumber = Number(CPF)
-  let formattedCPF = String(CPFNumber)
+  let formattedCPF = String(CPFNumber).substring(0, 11)
   // Add a period after the third and sixth digits
   formattedCPF = formattedCPF.replace(/(\d{3})(\d)/, "$1.$2");
   formattedCPF = formattedCPF.replace(/(\d{3})(\d)/, "$1.$2");
