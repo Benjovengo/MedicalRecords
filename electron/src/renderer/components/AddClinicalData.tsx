@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import { Row, Col } from "reactstrap";
+import { ethers } from 'ethers'
 
 // Scripts
 import cpfFormatting from 'renderer/scripts/cpfFormatting';
 
 /** Stylesheet */
 import "./AddClinicalData.css"
+
+// Contract and Address
+import ClinicalData from '../../abis/ClinicalData.json' // contract ABI
+import config from '../../config.json' // contract addresses
+import { ALCHEMY_API_KEY, PRIVATE_KEY } from '../../../work/sensitive';
+
+// Setup provider and network
+const alchemyProvider = new ethers.providers.AlchemyProvider("goerli", ALCHEMY_API_KEY);
+const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
+const clinicalData = new ethers.Contract(config[31337].clinicalData.address, ClinicalData, signer)
 
 
 interface AddClinicalDataProps {
@@ -55,6 +66,30 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
     CPFInput.value = cpfFormatting(doctorsNumericCPF)
   }
 
+
+/**
+ * Save the procedure information as unencrypted data.
+ * 
+ * @param event clicking a button
+ */
+  const addUnencryptedProcedure = async (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const clinicHospitalName = (document.getElementById("clinicHospitalName") as HTMLInputElement).value
+    const procedureInfo = (document.getElementById("procedureInfo") as HTMLInputElement).value
+    // Today's date in seconds: Unix Epoch
+    const date = Math.floor(new Date().getTime() / 1000)
+    const doctorsCPF = (document.getElementById("doctorsCPF") as HTMLInputElement).value
+    // Remove all non-numeric characters from the input value
+    const doctorsNumericCPF = doctorsCPF.replace(/\D/g, '');
+    
+    // Check if the value has 11 digits
+    if (sharedCPF.length !== 11) {
+      alert("Error! Patient document number must be 11 digits long." + "\n" + `Document number: "${sharedCPF}"`)
+    } else {
+      await clinicalData.addProcedure(clinicHospitalName, procedureInfo, date, doctorsNumericCPF, sharedCPF, address)
+      alert('Successfully Added Unencrypted Procedure')
+    }
+  }
 
   return (
     <>
@@ -120,7 +155,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             {/* Buttons */}
             <Row className="align-items-center">
               <Col className="d-flex justify-content-center mt-3 mb-2">
-                <button className='me-2' type="submit">Save Unencrypted Data</button>
+                <button className='me-2' type="submit" onClick={(event: any) => addUnencryptedProcedure(event)}>Save Unencrypted Data</button>
                 <button type="submit">Save Encrypted Data</button>
               </Col>
             </Row>
