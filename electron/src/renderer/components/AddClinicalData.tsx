@@ -131,6 +131,31 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
 
 
   /**
+ * Save the vaccine information as unencrypted plain text data.
+ * 
+ * @param event clicking the button to add unencrypted procedure info
+ */
+  const addUnencryptedVaccine = async (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const vaccineName = (document.getElementById("vaccineName") as HTMLInputElement).value
+    const vaccineLab = (document.getElementById("vaccineLab") as HTMLInputElement).value
+    const vaccineLot = (document.getElementById("vaccineLot") as HTMLInputElement).value
+    const vaccineDose = (document.getElementById("vaccineDose") as HTMLInputElement).value
+    const vaccineNumberOfDoses = (document.getElementById("vaccineNumberOfDoses") as HTMLInputElement).value
+    
+    const date = Math.floor(new Date().getTime() / 1000)
+    
+    // Check if the value has 11 digits
+    if (sharedCPF.length !== 11) {
+      alert("Error! Patient document number must be 11 digits long." + "\n" + `Document number: "${sharedCPF}"`)
+    } else {
+      await clinicalData.addVaccine(vaccineName, vaccineLab, vaccineLot, vaccineDose, vaccineNumberOfDoses, date, sharedCPF, address)
+      alert('Successfully Added Unencrypted Vaccine')
+    }
+  }
+
+
+  /**
    * Clear the clinical procedure form
    * 
    * @param event click reset button
@@ -304,7 +329,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             </Row>
             <Row className="align-items-center">
               <Col className="d-flex justify-content-center mt-3 mb-2">
-                <button className='me-2' type="submit" >Save Unencrypted Data</button>
+                <button className='me-2' type="submit" onClick={(event: any) => addUnencryptedVaccine(event)}>Save Unencrypted Data</button>
                 <button type="submit" >Save Encrypted Data</button>
               </Col>
             </Row>
