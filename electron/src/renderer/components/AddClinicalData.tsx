@@ -155,7 +155,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
         </select>
       </div>
 
-
+      {(procedureOrVaccine === 'addProcedure')? <>{/* Procedure */}
       <div>
           <form className='form__wrapper' id='addProcedureForm'>
             <Row>
@@ -220,6 +220,98 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             </Row>
           </form>
         </div>
+
+
+        </> : <>{/* Vaccine */}
+      
+        <div>
+          <form className='form__wrapper' id='addVaccineForm'>
+            <Row>
+              <Col>
+                <div className="form__field mb-1">
+                  <Row>
+                    <label className='form__label' htmlFor="vaccineName">Vaccine Name</label>
+                  </Row>
+                  <Row>
+                    <input type="text" className='wide__label' id="vaccineName" name="vaccineName" /><br/>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+            
+            <Row>
+              <Col>
+                <div className="form__field mb-1">
+                  <Row>
+                    <label className='form__label' htmlFor="vaccineLab">Manufacturer/Laboratory</label>
+                  </Row>
+                  <Row>
+                    <input type="text" className='wide__label' id="vaccineLab" name="vaccineLab" /><br/>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+            
+            <Row>
+              <Col>
+                <div className="form__field mb-1">
+                  <Row>
+                    <label className='form__label' htmlFor="vaccineLot">Lot Number</label>
+                  </Row>
+                  <Row>
+                    <input type="text" className='wide__label' id="vaccineLot" name="vaccineLot" /><br/>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+            
+            <Row>
+              <Col>
+                <div className="form__field mb-1">
+                  <Row>
+                    <label className='form__label' htmlFor="vaccineDose">Dose</label>
+                  </Row>
+                  <Row>
+                    <input type="number" id="vaccineDose" name="vaccineDose" defaultValue={1} required /><br/>
+                  </Row>
+                </div>
+              </Col>
+              <Col>
+                <div className="form__field mb-1">
+                  <Row>
+                    <label className='form__label' htmlFor="vaccineNumberOfDoses">Total Number of Doses</label>
+                  </Row>
+                  <Row>
+                    <input type="number" id="vaccineNumberOfDoses" name="vaccineNumberOfDoses" defaultValue={1} /><br/>
+                  </Row>
+                </div>
+              </Col>
+              <Col>
+                <div className="form__field mb-1">
+                  <Row>
+                      <label className='form__label' htmlFor="date">Date</label>
+                  </Row>
+                  <Row>
+                      <input type="date" id="date" name="date" defaultValue={today} disabled/><br/>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+            {/* Buttons */}
+            <Row className="align-items-center">
+              <Col className="d-flex justify-content-center mt-3 mb-2">
+                <button className='me-2' type="submit" >Save Unencrypted Data</button>
+                <button type="submit" >Save Encrypted Data</button>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="d-flex justify-content-center mt-3 mb-2">
+                <button className='reset__button' >Clear Form</button>
+              </Col>
+            </Row>
+          </form>
+        </div>
+      </>}
 
 
     </>
