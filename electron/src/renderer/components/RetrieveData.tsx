@@ -210,6 +210,34 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
           </Col>
         </Row>
       </div>
+      {/* Procedures */}
+      <Row className='mt-5'>
+          <Col>
+            <h5>Procedures</h5>
+            <Row className='align-items-start'>
+              <Col className='data__col__wrapper'>
+                <Row>
+                  <Col xs="auto" className='vertical__header'>
+                    <span>Encrypted Data</span>
+                  </Col>
+                  <Col className='data__fields'>
+                    <h2>Encrypted Placeholder.</h2>
+                  </Col>
+                </Row>
+              </Col>
+              <Col className='data__col__wrapper'>
+                <Row>
+                  <Col xs="auto" className='vertical__header'>
+                    <span>Unencrypted Data</span>
+                  </Col>
+                  <Col className='data__fields'>
+                    <h2>Unencrypted Placeholder.</h2>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
     </>
   )
 };
