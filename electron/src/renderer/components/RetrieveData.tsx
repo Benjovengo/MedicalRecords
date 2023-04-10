@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from "reactstrap";
 import { ethers } from 'ethers'
 
+/** Components */
+import ProcedureCard from './ProceduresCard';
 
 /** Contract and Address */
 import ClinicalData from '../../abis/ClinicalData.json' // contract ABI
@@ -221,10 +223,16 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                     <span>Encrypted Data</span>
                   </Col>
                   <Col className='data__fields'>
-                    <h2>Encrypted Placeholder.</h2>
+                    {(encryptedProceduresData===null)? <></> : encryptedProceduresData.map((item, index) => (
+                      <div key={index}>
+                        <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
+                      </div>
+                    ))}
                   </Col>
                 </Row>
               </Col>
+            </Row>
+            <Row className='align-items-start'>
               <Col className='data__col__wrapper'>
                 <Row>
                   <Col xs="auto" className='vertical__header'>
