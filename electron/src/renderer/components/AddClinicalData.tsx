@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Row, Col } from "reactstrap";
 
+// Scripts
+import cpfFormatting from 'renderer/scripts/cpfFormatting';
+
+/** Stylesheet */
 import "./AddClinicalData.css"
 
 
@@ -22,7 +26,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
   // Get today's date
   let currentDate = new Date();
   currentDate.setDate(currentDate.getDate());
-  const today = currentDate.toISOString().substring(0,10);
+  const today: string = currentDate.toISOString().substring(0,10);
 
 
   /**
@@ -32,6 +36,23 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
    */
   const selectProcedureOrVaccine = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setProcedureOrVaccine(event.target.value)
+  }
+
+
+  /**
+   * Format the CPF number in real-time
+   * 
+   * @param event 
+   */
+  const formatDocCPF = async (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    // Form data
+    const doctorsCPF: string = (document.getElementById("doctorsCPF") as HTMLInputElement).value
+    // Remove all non-numeric characters from the input value
+    const doctorsNumericCPF: string = doctorsCPF.replace(/\D/g, '');
+    // format CPF
+    let CPFInput: HTMLInputElement = (document.getElementById("doctorsCPF") as HTMLInputElement)
+    CPFInput.value = cpfFormatting(doctorsNumericCPF)
   }
 
 
@@ -81,7 +102,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                     <label className='form__label' htmlFor="doctorsCPF">Doctor's Document (11-digit number)</label>
                   </Row>
                   <Row>
-                    <input type="text" id="doctorsCPF" name="doctorsCPF" placeholder='000.000.000-00' required /><br/>
+                    <input type="text" id="doctorsCPF" name="doctorsCPF" onChange={(event: any) => formatDocCPF(event)} placeholder='000.000.000-00' required /><br/>
                   </Row>
                 </div>
               </Col>
