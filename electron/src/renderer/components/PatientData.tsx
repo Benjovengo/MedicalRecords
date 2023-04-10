@@ -7,6 +7,9 @@ import PatientsData from '../../abis/PatientsData.json' // contract ABI
 import config from '../../config.json' // contract addresses
 import { ALCHEMY_API_KEY, PRIVATE_KEY, HARDHAT_ACCOUNT01_PRIVATE_KEY } from '../../../work/sensitive'
 
+// Scripts
+import cpfFormatting from 'renderer/scripts/cpfFormatting';
+
 /** Stylesheet */
 import './PatientData.css'
 
@@ -88,24 +91,6 @@ const Patient: React.FunctionComponent<patientProps> = ({ sharedCPF, setSharedCP
       let lastNameInput = (document.getElementById("patientLastName") as HTMLInputElement)
       lastNameInput.value = loadData.lastName
     }
-  }
-
-
-  /**
-   * Formats an 11-digit number as ***.***.***-**
-   * 
-   * @param CPF the string containing an 11-digit number - digits only
-   * @returns formatted CPF as ***.***.***-**
-   */
-  const cpfFormatting = (CPF: string) => {
-    let formattedCPF = CPF
-    // Add a period after the third and sixth digits
-    formattedCPF = formattedCPF.replace(/(\d{3})(\d)/, "$1.$2");
-    formattedCPF = formattedCPF.replace(/(\d{3})(\d)/, "$1.$2");
-    // Add a dash before the last two digits
-    formattedCPF = formattedCPF.replace(/(\d{2})$/, "-$1");
-    
-    return formattedCPF
   }
 
 
