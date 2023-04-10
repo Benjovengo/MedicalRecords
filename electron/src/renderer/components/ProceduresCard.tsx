@@ -48,6 +48,22 @@ const ProcedureCard: React.FC<RetrievedData> = ({ clinicHospitalName, procedureI
   ) : procedureInfo;
 
 
+  /**
+   * Convert Unix Epoch date to a human readable format.
+   * 
+   * @param unixTimestamp the Unix Epoch of the date in which the procedure as added to the blockchain
+   * @returns string in the form of day/month/year
+   */
+  const unixTimestampToDate = (unixTimestamp: number) => {
+    const date = new Date(unixTimestamp * 1000); // convert to milliseconds
+    const day = date.getDate().toString().padStart(2, '0'); // pad with 0 if needed
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // pad with 0 if needed - months are zero-based, so add 1
+    const year = date.getFullYear();
+    
+    return `${day}/${month}/${year}`;
+  }
+
+
   return (
     <>
     <div className="procedure__wrapper">
@@ -57,7 +73,7 @@ const ProcedureCard: React.FC<RetrievedData> = ({ clinicHospitalName, procedureI
             <p>Clinic: <span>{clinicHospitalName}</span></p>
           </Col>
           <Col xs={4} className="text-end">
-            <p>date: <span>{date}</span></p>
+            <p>date: <span>{unixTimestampToDate(date)}</span></p>
           </Col>
         </Row>
         <Row>
