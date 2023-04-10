@@ -4,6 +4,7 @@ import { ethers } from 'ethers'
 
 // Scripts
 import cpfFormatting from 'renderer/scripts/cpfFormatting';
+import { encryptText } from 'renderer/scripts/cryptography';
 
 /** Stylesheet */
 import "./AddClinicalData.css"
@@ -11,7 +12,7 @@ import "./AddClinicalData.css"
 // Contract and Address
 import ClinicalData from '../../abis/ClinicalData.json' // contract ABI
 import config from '../../config.json' // contract addresses
-import { ALCHEMY_API_KEY, PRIVATE_KEY } from '../../../work/sensitive';
+import { ALCHEMY_API_KEY, PRIVATE_KEY, HARDHAT_ACCOUNT01_PRIVATE_KEY } from '../../../work/sensitive';
 
 // Setup provider and network - Alchemy
 /* const alchemyProvider = new ethers.providers.AlchemyProvider("goerli", ALCHEMY_API_KEY);
@@ -22,6 +23,8 @@ const provider = new ethers.providers.JsonRpcProvider('http://127.0.0.1:8545');
 const signer = new ethers.Wallet(HARDHAT_ACCOUNT01_PRIVATE_KEY, provider);
 
 const clinicalData = new ethers.Contract(config[31337].clinicalData.address, ClinicalData, signer)
+
+
 
 
 interface AddClinicalDataProps {
@@ -75,7 +78,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
 /**
  * Save the procedure information as unencrypted data.
  * 
- * @param event clicking a button
+ * @param event clicking the button to add unencrypted procedure info
  */
   const addUnencryptedProcedure = async (event: React.MouseEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -93,6 +96,36 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
     } else {
       await clinicalData.addProcedure(clinicHospitalName, procedureInfo, date, doctorsNumericCPF, sharedCPF, address)
       alert('Successfully Added Unencrypted Procedure')
+    }
+  }
+
+
+  /**
+   * Save the procedure information as encrypted string data.
+   * 
+   * @param event clicking the button to add encrypted procedure info
+   */
+  const addEncryptedProcedure = async (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const clinicHospitalName = (document.getElementById("clinicHospitalName") as HTMLInputElement).value
+    const procedureInfo = (document.getElementById("procedureInfo") as HTMLInputElement).value
+    const date = Math.floor(new Date().getTime() / 1000)
+    const doctorsCPF = (document.getElementById("doctorsCPF") as HTMLInputElement).value
+    
+    const dataJSON = {
+        'clinicHospitalName': clinicHospitalName,
+        'procedureInfo': procedureInfo,
+        'date': date,
+        'doctorAddress': doctorsCPF.replace(/\D/g, ''),
+        'authorizedUser': address
+      }
+    // Check if the value has 11 digits
+    if (sharedCPF.length !== 11) {
+      alert("Error! Patient document number must be 11 digits long." + "\n" + `Document number: "${sharedCPF}"`)
+    } else {
+      const encryptedData = encryptText(JSON.stringify(dataJSON))
+      await clinicalData.addEncryptedProcedure(encryptedData, sharedCPF)
+      alert('Successfully Added Encrypted Procedure')
     }
   }
 
@@ -177,7 +210,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             <Row className="align-items-center">
               <Col className="d-flex justify-content-center mt-3 mb-2">
                 <button className='me-2' type="submit" onClick={(event: any) => addUnencryptedProcedure(event)}>Save Unencrypted Data</button>
-                <button type="submit">Save Encrypted Data</button>
+                <button type="submit" onClick={(event: any) => addEncryptedProcedure(event)}>Save Encrypted Data</button>
               </Col>
             </Row>
             <Row>
