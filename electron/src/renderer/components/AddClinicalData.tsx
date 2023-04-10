@@ -219,8 +219,8 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
 
   return (
     <>
-      <h3>Procedures and Vaccines Data</h3>
-      <div className='mt-3 ms-3'>
+      <h5>Procedures and Vaccines Data</h5>
+      <div className='ms-3'>
         <select className='select__function' id="functionToCall" name="functionToCall" onChange={selectProcedureOrVaccine} >
           <option value="addProcedure">Add Procedure</option>
           <option value="addVaccine">Add Vaccine</option>
