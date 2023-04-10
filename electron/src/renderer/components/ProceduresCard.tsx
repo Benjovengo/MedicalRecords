@@ -67,7 +67,7 @@ const ProcedureCard: React.FC<RetrievedData> = ({ clinicHospitalName, procedureI
   return (
     <>
     <div className="procedure__wrapper">
-    <div className={`${index % 2 === 0 ? 'item__even' : 'item__odd'}`}>
+      <div className={`${index % 2 === 0 ? 'item__even' : 'item__odd'}`}>
         <Row>
           <Col>
             <p>Clinic: <span>{clinicHospitalName}</span></p>
