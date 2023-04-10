@@ -1,6 +1,9 @@
 import React from 'react';
 import { Row, Col } from "reactstrap";
 
+/** Scripts */
+import cpfFormatting from 'renderer/scripts/cpfFormatting';
+
 /** Stylesheet */
 import "./Cards.css"
 
@@ -35,7 +38,38 @@ const ProcedureCard: React.FC<RetrievedData> = ({ clinicHospitalName, procedureI
   return (
     <>
     <div className="procedure__wrapper">
-      <h3>Procedure</h3>
+    <div className={`${index % 2 === 0 ? 'item__even' : 'item__odd'}`}>
+        <Row>
+          <Col>
+            <p>Clinic: <span>{clinicHospitalName}</span></p>
+          </Col>
+          <Col xs={4} className="text-end">
+            <p>date: <span>{date}</span></p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p>Doctor: <span>{cpfFormatting(String(doctorAddress))}</span></p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p>Registered by: <span className='authorized__address'>{authorizedUser}</span></p>
+          </Col>
+        </Row>
+        <Row>
+          <Row>
+            <Col className='mt-3'>
+              <p>Procedure Info</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <span>{procedureInfo}</span>
+            </Col>
+          </Row>
+        </Row>
+      </div>
     </div>
     </>
   );
