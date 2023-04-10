@@ -144,6 +144,19 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
   }
 
 
+  /**
+   * Clear the vaccine form
+   * 
+   * @param event click reset button
+   */
+  const clearVaccineForm = (event: React.MouseEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (confirm('Are you sure you want to clear the form?')) {
+      const resetForm = document.getElementById('addVaccineForm') as HTMLFormElement
+      resetForm.reset();
+    }
+  }
+
 
   return (
     <>
@@ -154,8 +167,8 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
           <option value="addVaccine">Add Vaccine</option>
         </select>
       </div>
-
-      {(procedureOrVaccine === 'addProcedure')? <>{/* Procedure */}
+      {(procedureOrVaccine === 'addProcedure')? <>
+      {/* Procedure Form */}
       <div>
           <form className='form__wrapper' id='addProcedureForm'>
             <Row>
@@ -170,7 +183,6 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                 </div>
               </Col>
             </Row>
-            
             <Row>
               <Col>
                 <div className="form__field mb-1">
@@ -183,7 +195,6 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                 </div>
               </Col>
             </Row>
-            
             <Row>
               <Col>
                 <div className="form__field mb-1">
@@ -206,7 +217,6 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                 </div>
               </Col>
             </Row>
-            {/* Buttons */}
             <Row className="align-items-center">
               <Col className="d-flex justify-content-center mt-3 mb-2">
                 <button className='me-2' type="submit" onClick={(event: any) => addUnencryptedProcedure(event)}>Save Unencrypted Data</button>
@@ -220,10 +230,8 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             </Row>
           </form>
         </div>
-
-
-        </> : <>{/* Vaccine */}
-      
+        </> : <>
+        {/* Vaccine Form */}      
         <div>
           <form className='form__wrapper' id='addVaccineForm'>
             <Row>
@@ -238,7 +246,6 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                 </div>
               </Col>
             </Row>
-            
             <Row>
               <Col>
                 <div className="form__field mb-1">
@@ -251,7 +258,6 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                 </div>
               </Col>
             </Row>
-            
             <Row>
               <Col>
                 <div className="form__field mb-1">
@@ -264,7 +270,6 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                 </div>
               </Col>
             </Row>
-            
             <Row>
               <Col>
                 <div className="form__field mb-1">
@@ -297,7 +302,6 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
                 </div>
               </Col>
             </Row>
-            {/* Buttons */}
             <Row className="align-items-center">
               <Col className="d-flex justify-content-center mt-3 mb-2">
                 <button className='me-2' type="submit" >Save Unencrypted Data</button>
@@ -306,14 +310,12 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
             </Row>
             <Row>
               <Col className="d-flex justify-content-center mt-3 mb-2">
-                <button className='reset__button' >Clear Form</button>
+                <button className='reset__button' onClick={(event: any) => clearVaccineForm(event)}>Clear Form</button>
               </Col>
             </Row>
           </form>
         </div>
       </>}
-
-
     </>
   )
 };
