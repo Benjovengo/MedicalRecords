@@ -233,14 +233,20 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                 </Row>
               </Col>
             </Row>
-            <Row className='align-items-start mt-3'>
+            <Row className='data__wrapper align-items-start mt-3'>
               <Col className='data__col__wrapper'>
                 <Row>
                   <Col xs="auto" className='vertical__header'>
                     <span>Unencrypted Data</span>
                   </Col>
                   <Col className='data__fields'>
-                    <h2>Unencrypted Placeholder.</h2>
+                    <Row>
+                      {(proceduresData===null)? <></> : proceduresData.map((item, index) => (
+                        <div key={index}>
+                          <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={Number(item.doctorAddress)} authorizedUser={item.authorizedUser} index={index} />
+                        </div>
+                      ))}
+                    </Row>
                   </Col>
                 </Row>
               </Col>
