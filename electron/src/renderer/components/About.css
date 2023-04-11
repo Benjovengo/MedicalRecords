@@ -1,0 +1,44 @@
+.about__wrapper {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.about__wrapper p {
+  text-align: justify;
+}
+
+.about__link {
+  cursor: pointer;
+}
+
+.about__link:hover {
+  color: #90455b;
+}
+
+.about__text {
+  background-color: #FFFFFF33;
+  margin: 0 2em;
+  padding: 1em;
+}
+
+.gif__animation {
+  background-image: url('../../../assets/office_light.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 2em;
+  padding: 0;
+  margin-right: 2em;
+  padding-bottom: 400px;
+}
+
+.profile__picture {
+  background-image: url('../../../assets/ProfilePhoto.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 2em;
+  padding: 0;
+  margin-right: 2em;
+  padding-bottom: 400px;
+}
