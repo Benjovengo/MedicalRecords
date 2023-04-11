@@ -1,0 +1,54 @@
+.data__wrapper {
+  margin: 0;
+}
+
+
+.retrieve__data__wrapper {
+  background-color: #383532;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.patient__records {
+  background-color: rgba(233, 225, 224, 1.0);
+  border-left: 5px solid #a9506a;
+  box-sizing: border-box;
+  color: #395563;
+  display: inline-block;
+  font-size: 0.9rem;
+  line-height: normal;
+  margin: 0;
+  margin-left: 0.5em;
+  padding: 0.5em 1.0em;
+  text-align: left;
+}
+
+.vertical__header {
+  align-items: center;
+  background-color: #444;
+  border-bottom: 4px solid #383532;
+  color: #eee;
+  display: flex;
+  height: auto;
+  line-height: normal;
+  justify-content: center;
+  margin: 0;
+  margin-left: 1em;
+  padding: 0.5em 0.25em;
+  writing-mode: vertical-lr;
+}
+
+.vertical__header span {
+  font-size: 1rem;
+  transform: rotate(180deg);
+}
+
+.card__map {
+  margin: 0em;
+  padding: 0em;
+}
+
+.vaccine__data__fields {
+  padding: 0;
+}

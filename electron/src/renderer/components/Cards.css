@@ -1,0 +1,33 @@
+.procedure__wrapper {
+  border-bottom: 4px solid #383532;
+  border-right: 4px solid #383532;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.procedure__wrapper p {
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
+.procedure__wrapper span {
+  color: #e7d7d8;
+  font-size: 0.85rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.procedure__wrapper .authorized__address {
+  font-family: 'Roboto Mono', monospace;
+  /* font-size: 0.8rem; */
+}
+
+.item__even {
+  background-color: #e8e8e855;
+  padding: 0.5em 1em;
+}
+
+.item__odd {
+  background-color: #A0A0A055;
+  padding: 0.5em 1em;
+}

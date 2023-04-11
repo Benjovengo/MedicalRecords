@@ -97,3 +97,29 @@ button:hover {
   transform: scale(1.05);
 }
 
+.gif__animation {
+  background-image: url('../../assets/office_light.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 2em;
+  padding: 0;
+  margin-right: 2em;
+  padding-bottom: 400px;
+}
+
+.patient__container {
+  background-color: transparent;
+  margin: -7em 3em 0 3em;
+  padding: 0 1em;
+}
+
+.addData__container {
+  background-color: transparent;
+  margin-top: -7em;
+}
+
+.blockchain__data {
+  margin: 0;
+  padding: 0;
+}

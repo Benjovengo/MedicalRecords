@@ -1,0 +1,124 @@
+.form__wrapper {
+  margin: 0 1em;
+}
+
+.form__wrapper .form__field {
+  background-color: rgba(229, 228, 242, 0.75);
+  border-radius: 5px;
+  margin: 0 0em;
+  padding: 0.25em 2em;
+}
+
+.form__wrapper .form__label {
+  color: #5c2c3a;
+  font-size: 0.75rem;
+  margin: 0;
+  margin-bottom: 0.25em;
+  padding: 0;
+  width: max-content;
+}
+
+.form__wrapper .form__field input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #5c2c3a;
+  margin: 0;
+  padding: 0 0.25em;
+}
+
+.form__wrapper .form__number__field {
+  background-color: rgba(229, 228, 242, 0.75);
+  border-radius: 5px;
+  margin: 0 0;
+  margin-right: -1em;
+  padding: 0.25em 2em;
+}
+
+.form__wrapper .form__number__label {
+  color: #5c2c3a;
+  font-size: 0.75rem;
+  margin: 0;
+  margin-bottom: 0.25em;
+  padding: 0;
+  width: max-content;
+}
+
+.form__wrapper .form__number__field input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #5c2c3a;
+  margin: 0;
+  padding: 0 0.25em;
+}
+
+
+.form__wrapper .form__date__field {
+  background-color: rgba(229, 228, 242, 0.75);
+  border-radius: 5px;
+  margin: 0 0;
+  padding: 0.25em 2em;
+}
+
+.form__wrapper .form__date__label {
+  color: #5c2c3a;
+  font-size: 0.75rem;
+  margin: 0;
+  margin-bottom: 0.25em;
+  padding: 0;
+  width: max-content;
+}
+
+.form__wrapper .form__date__field input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #5c2c3a;
+  margin: 0;
+  padding: 0 0.25em;
+}
+
+.form__field input:focus {
+  background: #f0f0f0;
+  outline: 0px solid #5c2c3a;
+}
+
+.form__number__field input:focus {
+  background: #f0f0f0;
+  outline: 0px solid #5c2c3a;
+}
+
+
+.form__field textarea {
+  background: #f0f0f010;
+  outline: 0px solid #5c2c3a;
+}
+
+.form__field textarea:focus {
+  background: #f0f0f0;
+  outline: 0px solid #5c2c3a;
+}
+
+.select__function {
+  background: transparent;
+  border: none;
+  border-radius: 0px;
+  color: #252525;
+  cursor: pointer;
+  font-size: calc(1.4rem + 0.3vw);
+  line-height: 1.2;
+  margin: 0;
+  margin-bottom: 0.5em;
+  margin-top: -0.25em;
+  padding: 0;
+  padding-right: 0.5em;
+}
+
+.select__function:focus {
+  outline: 0px solid #5c2c3a;
+}
+
+
+.select__function option {
+  background-color: #ececec;
+  border-radius: 0px;
+  font-size: 1rem;
+}

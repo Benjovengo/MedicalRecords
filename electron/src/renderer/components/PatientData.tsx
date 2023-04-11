@@ -7,6 +7,9 @@ import PatientsData from '../../abis/PatientsData.json' // contract ABI
 import config from '../../config.json' // contract addresses
 import { ALCHEMY_API_KEY, PRIVATE_KEY, HARDHAT_ACCOUNT01_PRIVATE_KEY } from '../../../work/sensitive'
 
+// Scripts
+import cpfFormatting from 'renderer/scripts/cpfFormatting';
+
 /** Stylesheet */
 import './PatientData.css'
 
@@ -91,62 +94,70 @@ const Patient: React.FunctionComponent<patientProps> = ({ sharedCPF, setSharedCP
   }
 
 
-  /**
-   * Formats an 11-digit number as ***.***.***-**
-   * 
-   * @param CPF the string containing an 11-digit number - digits only
-   * @returns formatted CPF as ***.***.***-**
-   */
-  const cpfFormatting = (CPF: string) => {
-    let formattedCPF = CPF
-    // Add a period after the third and sixth digits
-    formattedCPF = formattedCPF.replace(/(\d{3})(\d)/, "$1.$2");
-    formattedCPF = formattedCPF.replace(/(\d{3})(\d)/, "$1.$2");
-    // Add a dash before the last two digits
-    formattedCPF = formattedCPF.replace(/(\d{2})$/, "-$1");
-    
-    return formattedCPF
-  }
-
-
   return (
     <>
       <Container className='patient__wrapper'>
         <h4 className='ms-3'>Patient Info</h4>
         <form className='patient__form'>
-          <Row>
-            <Col xs={3}>
-              <label className='patient__label' htmlFor="patientCPF">CPF Number</label>
-            </Col>
+          <Row className='patient__field'>
             <Col>
-              <input type="text" id="patientCPF" name="patientCPF" onChange={(event: any) => getPatientInfo(event)} placeholder='000.000.000-00' required /><br/>
+              <Row>
+                <Col>
+                  <label className='patient__label' htmlFor="patientCPF">CPF Number</label>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <input type="text" id="patientCPF" name="patientCPF" onChange={(event: any) => getPatientInfo(event)} placeholder='000.000.000-00' required />
+                </Col>
+              </Row>
             </Col>
           </Row>
-          <Row>
-            <Col xs={3}>
-              <label className='patient__label' htmlFor="patientFirstName">First Name</label>
-            </Col>
+          <Row className='patient__field'>
             <Col>
-              <input className='wide__label' type="text" id="patientFirstName" name="patientFirstName" required /><br/>
+              <Row>
+                <Col>
+                  <label className='patient__label' htmlFor="patientFirstName">First Name</label>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <input className='wide__label' type="text" id="patientFirstName" name="patientFirstName" required />
+                </Col>
+              </Row>
             </Col>
           </Row>
-          <Row className='mb-2'>
-            <Col xs={3}>
-              <label className='patient__label' htmlFor="patientLastName">Last Name</label>
-            </Col>
+
+          <Row className='patient__field'>
             <Col>
-              <input className='wide__label' type="text" id="patientLastName" name="patientLastName" required /><br/>
+              <Row>
+                <Col>
+                  <label className='patient__label' htmlFor="patientLastName">Last Name</label>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <input className='wide__label' type="text" id="patientLastName" name="patientLastName" required />
+                </Col>
+              </Row>
             </Col>
           </Row>
-          <Row className='align-items-end'>
-            <Col xs={5}>
-              <button className='load__data me-2' onClick={(event: any) => getPatientInfo(event)}>load blockchain data</button>
-            </Col>
+          <Row className='align-items-end mt-3 mb-5'>
             <Col className='d-flex justify-content-end'>
-              <button className='me-2' type="submit" onClick={(event: any) => updatePatientInfo(event)}>Save</button>
+              <button className='me-2' type="submit" onClick={(event: any) => updatePatientInfo(event)}>Save Info</button>
             </Col>
           </Row>
         </form>
+        <Row>
+          <Col>
+            <p className='patient__info__paragraph ms-3 me-3 mt-2'>To reload the info from the blockchain after a manual edit, click reload blockchain data button below. This will replace the information in the first and last name fields.</p>
+          </Col>
+        </Row>
+        <Row className='align-items-end'>
+          <Col className='d-flex justify-content-end'>
+            <button className='load__data' onClick={(event: any) => getPatientInfo(event)}>reload blockchain data</button>
+          </Col>
+        </Row>
       </Container>
     </>
   )
