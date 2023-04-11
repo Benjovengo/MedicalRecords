@@ -27,6 +27,7 @@
 .vertical__header {
   align-items: center;
   background-color: #444;
+  border-bottom: 4px solid #383532;
   color: #eee;
   display: flex;
   height: auto;

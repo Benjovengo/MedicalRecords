@@ -1,5 +1,6 @@
 .procedure__wrapper {
-  border-bottom: 2px solid #a9506a;
+  border-bottom: 4px solid #383532;
+  border-right: 4px solid #383532;
   font-size: 1rem;
   margin: 0;
 }
