@@ -254,10 +254,6 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
             </Row>
           </Col>
         </Row>
-
-
-
-
         {/* Vaccines */}
         <Row className='data__wrapper mt-3'>
           <Col>
@@ -300,10 +296,6 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
             </Row>
           </Col>
         </Row>
-
-
-
-
       </div>
     </>
   )
