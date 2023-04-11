@@ -9,7 +9,7 @@ import "./Cards.css"
 
 
 /**
- * Interface of the card for a procedure retrieved procedure.
+ * Interface of the card for a retrieved procedure.
  */
 interface RetrievedData {
   clinicHospitalName: string;
