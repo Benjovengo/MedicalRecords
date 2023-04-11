@@ -271,9 +271,9 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                   <Col className='data__fields'>
                     <Row>
                       {(encryptedVaccinesData===null)? <></> : encryptedVaccinesData.map((item, index) => (
-                        <div key={index}>
+                        <Col xs={6} key={index}>
                           <VaccineCard name={item.name} lab={item.lab} lot={item.lot} dose={Number(item.dose)} totalDoses={Number(item.totalDoses)} date={Number(item.date)} authorizedUser={item.authorizedUser} index={index} />
-                        </div>
+                        </Col>
                       ))}
                     </Row>
                   </Col>

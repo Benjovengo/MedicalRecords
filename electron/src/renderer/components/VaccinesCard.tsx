@@ -58,58 +58,58 @@ const VaccineCard: React.FC<RetrievedData> = ({ name, lab, lot, dose, totalDoses
         <Row className='mb-3'>
           <Col>
             <Row className='field__header'>
-              Vaccine
+              <span>Vaccine</span>
             </Row>
             <Row className='vaccine__header'>
-              <span>{name}</span>
+              <p>{name}</p>
             </Row>
           </Col>
         </Row>
         <Row>
           <Col>
             <Row className='field__header'>
-              Manufacturer
+              <span>Manufacturer</span>
             </Row>
             <Row className='blockchain__info'>
-              <span>{lab}</span>
+              <p>{lab}</p>
             </Row>
           </Col>
         </Row>
         <Row>
           <Col>
             <Row className='field__header'>
-              Lot Number:
+              <span>Lot Number</span>
             </Row>
             <Row className='blockchain__info'>
-              <span>{lot}</span>
+              <p>{lot}</p>
             </Row>
           </Col>
         </Row>
         <Row>
           <Col>
             <Row className='field__header'>
-              Dose
+              <span>Dose</span>
             </Row>
             <Row className='blockchain__info'>
-              <span>{dose}/{totalDoses}</span>
+              <p>{dose} of {totalDoses}</p>
             </Row>
           </Col>
           <Col>
             <Row className='field__header'>
-              Date
+              <span>Date</span>
             </Row>
             <Row className='blockchain__info'>
-              <span>{unixTimestampToDate(date)}</span>
+              <p>{unixTimestampToDate(date)}</p>
             </Row>
           </Col>
         </Row>
         <Row>
           <Col>
             <Row className='field__header'>
-              Registered by:
+              <span>Registered by</span>
             </Row>
             <Row className='blockchain__info'>
-              <span className='authorized__address'>{authorizedUser}</span>
+              <p className='authorized__address'>{authorizedUser}</p>
             </Row>
           </Col>
         </Row>
