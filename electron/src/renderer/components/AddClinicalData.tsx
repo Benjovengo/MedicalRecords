@@ -174,7 +174,7 @@ const AddClinicalData: React.FunctionComponent<AddClinicalDataProps> = ({ addres
         'lab': vaccineLab,
         'lot': vaccineLot,
         'dose': vaccineDose,
-        'totalDoses': vaccineNumberOfDoses,
+        'numberOfDoses': vaccineNumberOfDoses,
         'date': date,
         'authorizedUser': address
       }

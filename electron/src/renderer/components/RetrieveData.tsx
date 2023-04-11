@@ -53,7 +53,7 @@ interface RetrievedVaccinesData {
   lab: string;
   lot: string;
   dose: number;
-  totalDoses: number;
+  numberOfDoses: number;
   date: number;
   authorizedUser: string;
 }
@@ -268,7 +268,7 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                     <Row>
                       {(encryptedVaccinesData===null)? <></> : encryptedVaccinesData.map((item, index) => (
                         <Col xs={6} key={index}>
-                          <VaccineCard name={item.name} lab={item.lab} lot={item.lot} dose={Number(item.dose)} totalDoses={Number(item.totalDoses)} date={Number(item.date)} authorizedUser={item.authorizedUser} index={index} />
+                          <VaccineCard name={item.name} lab={item.lab} lot={item.lot} dose={Number(item.dose)} numberOfDoses={Number(item.numberOfDoses)} date={Number(item.date)} authorizedUser={item.authorizedUser} index={index} />
                         </Col>
                       ))}
                     </Row>
@@ -286,7 +286,7 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                     <Row>
                       {(vaccinesData===null)? <></> : vaccinesData.map((item, index) => (
                           <Col xs={6} key={index}>
-                            <VaccineCard name={item.name} lab={item.lab} lot={item.lot} dose={Number(item.dose)} totalDoses={Number(item.totalDoses)} date={Number(item.date)} authorizedUser={item.authorizedUser} index={index} />
+                            <VaccineCard name={item.name} lab={item.lab} lot={item.lot} dose={Number(item.dose)} numberOfDoses={Number(item.numberOfDoses)} date={Number(item.date)} authorizedUser={item.authorizedUser} index={index} />
                           </Col>
                         ))}
                     </Row>

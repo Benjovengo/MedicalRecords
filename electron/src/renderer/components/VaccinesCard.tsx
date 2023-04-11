@@ -13,7 +13,7 @@ interface RetrievedData {
   lab: string;
   lot: string;
   dose: number;
-  totalDoses: number;
+  numberOfDoses: number;
   date: number;
   authorizedUser: string;
   index: number;
@@ -27,13 +27,13 @@ interface RetrievedData {
  * @param lab the manufacturer of the vaccine
  * @param lot the lot of the ministered vaccine
  * @param dose which dose was ministered
- * @param totalDoses how many doses in total the vaccine requires
+ * @param numberOfDoses how many doses in total the vaccine requires
  * @param date the date in which the procedure has taken place - Unix Epoch
  * @param authorizedUser the user that inserted the procedure into the blockchain
  * @param index the index of the procedure in the patient's list
  * @returns React component to display the information about a single vaccine
  */
-const VaccineCard: React.FC<RetrievedData> = ({ name, lab, lot, dose, totalDoses, date, authorizedUser, index }) => {
+const VaccineCard: React.FC<RetrievedData> = ({ name, lab, lot, dose, numberOfDoses, date, authorizedUser, index }) => {
 
   /**
    * Convert Unix Epoch date to a human readable format.
@@ -91,7 +91,7 @@ const VaccineCard: React.FC<RetrievedData> = ({ name, lab, lot, dose, totalDoses
               <span>Dose</span>
             </Row>
             <Row className='blockchain__info'>
-              <p>{dose} of {totalDoses}</p>
+              <p>{dose} of {numberOfDoses}</p>
             </Row>
           </Col>
           <Col>
