@@ -4,6 +4,7 @@ import { ethers } from 'ethers'
 
 /** Components */
 import ProcedureCard from './ProceduresCard';
+import VaccineCard from './VaccinesCard';
 
 /** Contract and Address */
 import ClinicalData from '../../abis/ClinicalData.json' // contract ABI
@@ -233,7 +234,6 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                 </Row>
               </Col>
             </Row>
-            
             <Row className='align-items-start data__wrapper mt-3'>
               <Col className='data__col__wrapper'>
                 <Row>
@@ -252,9 +252,58 @@ const RetrieveData: React.FunctionComponent<patientProps> = ({ sharedCPF }) => {
                 </Row>
               </Col>
             </Row>
-            
           </Col>
         </Row>
+
+
+
+
+        {/* Vaccines */}
+        <Row className='data__wrapper mt-3'>
+          <Col>
+            <h5>Vaccines</h5>
+            <Row className='align-items-start data__wrapper'>
+              <Col className='data__col__wrapper'>
+                <Row>
+                  <Col xs="auto" className='vertical__header'>
+                    <span>Encrypted Data</span>
+                  </Col>
+                  <Col className='data__fields'>
+                    <Row>
+                      {(encryptedVaccinesData===null)? <></> : encryptedVaccinesData.map((item, index) => (
+                        <div key={index}>
+                          <VaccineCard name={item.name} lab={item.lab} lot={item.lot} dose={Number(item.dose)} totalDoses={Number(item.totalDoses)} date={Number(item.date)} authorizedUser={item.authorizedUser} index={index} />
+                        </div>
+                      ))}
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+            {/* <Row className='align-items-start data__wrapper mt-3'>
+              <Col className='data__col__wrapper'>
+                <Row>
+                  <Col xs="auto" className='vertical__header'>
+                    <span>Unencrypted Data</span>
+                  </Col>
+                  <Col className='data__fields'>
+                    <Row>
+                        {(proceduresData===null)? <></> : proceduresData.map((item, index) => (
+                          <Col xs={6} className='card__map' key={index}>
+                            <ProcedureCard clinicHospitalName={item.clinicHospitalName} procedureInfo={item.procedureInfo}  date={Number(item.date)} doctorAddress={item.doctorAddress} authorizedUser={item.authorizedUser} index={index} />
+                          </Col>
+                        ))}
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+            </Row> */}
+          </Col>
+        </Row>
+
+
+
+
       </div>
     </>
   )
