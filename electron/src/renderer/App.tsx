@@ -12,6 +12,7 @@ import './App.css';
 import { projectId } from "../../work/sensitive";
 
 // Components
+import About from './components/About';
 import AddClinicalData from './components/AddClinicalData';
 import EmployeeHeader from './components/EmployeeHeader';
 import Patient from "./components/PatientData";
@@ -92,6 +93,13 @@ const MedicalRecordsPage: React.FunctionComponent = () => {
       <section>
         <Container className='blockchain__data' fluid>
           <RetrieveData sharedCPF={sharedCPF} />
+        </Container>
+      </section>
+      <section>
+        <Container fluid>
+          <Row>
+            <About />
+          </Row>
         </Container>
       </section>
     </>
