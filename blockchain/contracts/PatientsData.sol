@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.16;
 
 /**
  * @title Personal Information about the Patients
@@ -17,7 +17,7 @@ contract PatientsData {
      * State Variables
      */
     /// the address of the owner of this contract
-    address private owner;
+    address private immutable owner;
     /// Information about the patient
     struct Person {
         string firstName;

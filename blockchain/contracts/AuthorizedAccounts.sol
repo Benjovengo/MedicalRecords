@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.16;
 
 /**
  * @title Authorized Accounts Information
@@ -17,7 +17,7 @@ contract AuthorizedAccounts {
      * State Variables
      */
     /// the address of the owner of this contract
-    address private owner;
+    address private immutable owner;
     /// Information about the authorized person
     struct Person {
         string firstName;
