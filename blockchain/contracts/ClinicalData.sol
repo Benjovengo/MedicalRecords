@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.16;
 
 /**
  * @title Clinical Information
@@ -101,6 +101,10 @@ contract ClinicalData {
      */
     function changeOwner(address _newOwner) public {
         require(msg.sender == owner, "Only the owner can call this function!");
+        require(
+            _newOwner != address(0x0),
+            "Zero address cannot be made the owner of this contract!"
+        );
         owner = _newOwner;
     }
 
