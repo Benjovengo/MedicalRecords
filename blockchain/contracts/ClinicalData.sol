@@ -19,14 +19,19 @@ contract ClinicalData {
     /// the address of the owner of this contract
     address private owner;
     /// total number of registered procedures for a patient
+    /// mapping from the CPF of the patient (11-digit number) to the number of plain text procedures
     mapping(uint256 => uint256) private numberOfProcedures;
     /// total number of registered procedures for a patient - encrypted
+    /// mapping from the CPF of the patient (11-digit number) to the number of encrypted procedures
     mapping(uint256 => uint256) private numberOfEncryptedProcedures;
     /// total number of administered vaccines for a patient
+    /// mapping from the CPF of the patient (11-digit number) to the number of plain text vaccines
     mapping(uint256 => uint256) private numberOfVaccines;
     /// total number of administered vaccines for a patient - encrypted
+    /// mapping from the CPF of the patient (11-digit number) to the number of encrypted vaccines
     mapping(uint256 => uint256) private numberOfEncryptedVaccines;
     /// total number of procedures for a doctor
+    /// mapping from the CPF of the doctor (11-digit number) to the number of procedures the doctor performed
     mapping(uint256 => uint256) private numberOfProceduresDoctor;
 
     /// Information about the vaccines
@@ -40,8 +45,12 @@ contract ClinicalData {
         address authorizedUser;
     }
     /// list of administered vaccines for a given patient
+    /// mapping from the CPF of the patient (11-digit number) to a second mapping in which the key
+    /// is the index of the vaccine and stores the plain text version of the vaccine info (struct)
     mapping(uint256 => mapping(uint256 => Vaccine)) private vaccines;
     /// encrypted list of administered vaccines for a given patient
+    /// mapping from the CPF of the patient (11-digit number) to a second mapping in which the key
+    /// is the index of the vaccine and stores the encrypted version of the vaccine info (struct)
     mapping(uint256 => mapping(uint256 => string)) private encryptedVaccines;
 
     /// Information about the procedures
@@ -53,8 +62,12 @@ contract ClinicalData {
         address authorizedUser;
     }
     /// list of procedures for a given patient
+    /// mapping from the CPF of the patient (11-digit number) to a second mapping in which the key
+    /// is the index of the procedure and stores the plain text version of the procedure info (struct)
     mapping(uint256 => mapping(uint256 => Procedure)) private procedures;
     /// encrypted list of procedures for a given patient
+    /// mapping from the CPF of the patient (11-digit number) to a second mapping in which the key
+    /// is the index of the procedure and stores the encrypted version of the procedure info (struct)
     mapping(uint256 => mapping(uint256 => string)) private encryptedProcedures;
 
     /// Information about the procedures performed by a given doctor
@@ -62,6 +75,8 @@ contract ClinicalData {
         uint256 patient;
         uint256 id;
     }
+    /// mapping from the CPF of the doctor (11-digit number) to a second mapping in which the key is
+    /// the index of the vaccine and stores the information about the procedure performed by the doctor
     mapping(uint256 => mapping(uint256 => DoctorProcedure))
         private doctorsProcedures;
 

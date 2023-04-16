@@ -50,7 +50,7 @@ contract PatientsData {
      *
      * @param firstName the first name of the patient
      * @param lastName the last name of the patient
-     * @param cpf brazilian cpf
+     * @param cpf brazilian CPF
      * @param date date when the person is registered
      */
     function addPatient(
@@ -69,7 +69,7 @@ contract PatientsData {
     /**
      * Get patient data.
      *
-     * @param cpf the cpf of the patient
+     * @param cpf the CPF of the patient
      * @return patients[cpf] the patient's registered data
      */
     function getPatient(uint256 cpf) external view returns (Person memory) {
