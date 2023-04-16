@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.7;
 
 /**
  * @title Personal Information about the Patients
@@ -31,10 +31,10 @@ contract PatientsData {
      * Events
      */
     event PatientAdded(
-        string _firstName,
-        string _lastName,
-        uint256 _CPF,
-        uint256 _date
+        string firstName,
+        string lastName,
+        uint256 cpf,
+        uint256 date
     );
 
     /**
@@ -48,32 +48,32 @@ contract PatientsData {
     /**
      * Add a new (or modify existing) patient on the blockchain.
      *
-     * @param _firstName the first name of the patient
-     * @param _lastName the last name of the patient
-     * @param _CPF brazilian CPF
-     * @param _date date when the person is registered
+     * @param firstName the first name of the patient
+     * @param lastName the last name of the patient
+     * @param cpf brazilian cpf
+     * @param date date when the person is registered
      */
     function addPatient(
-        string memory _firstName,
-        string memory _lastName,
-        uint256 _CPF,
-        uint256 _date
-    ) public {
+        string memory firstName,
+        string memory lastName,
+        uint256 cpf,
+        uint256 date
+    ) external {
         require(msg.sender == owner, "Only the owner can call this function!");
         /// Add patient info
-        patients[_CPF] = Person(_firstName, _lastName, _date);
+        patients[cpf] = Person(firstName, lastName, date);
         /// Broadcast event
-        emit PatientAdded(_firstName, _lastName, _CPF, _date);
+        emit PatientAdded(firstName, lastName, cpf, date);
     }
 
     /**
      * Get patient data.
      *
-     * @param _CPF the CPF of the patient
-     * @return patients[_CPF] the patient's registered data
+     * @param cpf the cpf of the patient
+     * @return patients[cpf] the patient's registered data
      */
-    function getPatient(uint256 _CPF) public view returns (Person memory) {
+    function getPatient(uint256 cpf) external view returns (Person memory) {
         require(msg.sender == owner, "Only the owner can call this function!");
-        return patients[_CPF];
+        return patients[cpf];
     }
 }

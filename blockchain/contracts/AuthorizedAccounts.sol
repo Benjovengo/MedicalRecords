@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.16;
+pragma solidity ^0.8.7;
 
 /**
  * @title Authorized Accounts Information
@@ -22,7 +22,7 @@ contract AuthorizedAccounts {
     struct Person {
         string firstName;
         string lastName;
-        uint256 CPF;
+        uint256 cpf;
         uint256 date;
         bool isAuthorized;
     }
@@ -33,11 +33,11 @@ contract AuthorizedAccounts {
      * Events
      */
     event AuthorizedPersonAdded(
-        string _firstName,
-        string _lastName,
-        uint256 _CPF,
-        uint256 _date,
-        address _blockchainAccountAddress
+        string firstName,
+        string lastName,
+        uint256 cpf,
+        uint256 date,
+        address blockchainAccountAddress
     );
 
     /**
@@ -60,83 +60,83 @@ contract AuthorizedAccounts {
      * Register a new authorized person to add/modify data
      * of the patients on the blockchain.
      *
-     * @param _firstName the first name of the authorized person
-     * @param _lastName the last name of the authorized person
-     * @param _CPF brazilian CPF
-     * @param _date date when the person is registered
-     * @param _blockchainAccountAddress the blockchain address of the person
+     * @param firstName the first name of the authorized person
+     * @param lastName the last name of the authorized person
+     * @param cpf brazilian CPF
+     * @param date date when the person is registered
+     * @param blockchainAccountAddress the blockchain address of the person
      */
     function setAuthorizedPerson(
-        string memory _firstName,
-        string memory _lastName,
-        uint256 _CPF,
-        uint256 _date,
-        address _blockchainAccountAddress
-    ) public {
+        string memory firstName,
+        string memory lastName,
+        uint256 cpf,
+        uint256 date,
+        address blockchainAccountAddress
+    ) external {
         require(msg.sender == owner, "Only the owner can call this function!");
         /// Add authorized person info
-        people[_blockchainAccountAddress] = Person(
-            _firstName,
-            _lastName,
-            _CPF,
-            _date,
+        people[blockchainAccountAddress] = Person(
+            firstName,
+            lastName,
+            cpf,
+            date,
             true
         );
         /// Broadcast event
         emit AuthorizedPersonAdded(
-            _firstName,
-            _lastName,
-            _CPF,
-            _date,
-            _blockchainAccountAddress
+            firstName,
+            lastName,
+            cpf,
+            date,
+            blockchainAccountAddress
         );
     }
 
     /**
      * Authorize a previously deauthorized employee.
      *
-     * @param _blockchainAccountAddress the blockchain address of the person
+     * @param blockchainAccountAddress the blockchain address of the person
      */
-    function authorizePerson(address _blockchainAccountAddress) public {
+    function authorizePerson(address blockchainAccountAddress) external {
         require(msg.sender == owner, "Only the owner can call this function!");
         /// Authorize
-        people[_blockchainAccountAddress].isAuthorized = true;
+        people[blockchainAccountAddress].isAuthorized = true;
     }
 
     /**
      * Deauthorize a previously authorized employee.
      *
-     * @param _blockchainAccountAddress the blockchain address of the person
+     * @param blockchainAccountAddress the blockchain address of the person
      */
-    function deauthorizePerson(address _blockchainAccountAddress) public {
+    function deauthorizePerson(address blockchainAccountAddress) external {
         require(msg.sender == owner, "Only the owner can call this function!");
         /// Deauthorize
-        people[_blockchainAccountAddress].isAuthorized = false;
+        people[blockchainAccountAddress].isAuthorized = false;
     }
 
     /**
      * Get authorized person data.
      *
-     * @param _blockchainAccountAddress the blockchain address of the person
-     * @return people[_blockchainAccountAddress] the authorized person register data
+     * @param blockchainAccountAddress the blockchain address of the person
+     * @return people[blockchainAccountAddress] the authorized person register data
      */
     function getAuthorizedPerson(
-        address _blockchainAccountAddress
-    ) public view returns (Person memory) {
+        address blockchainAccountAddress
+    ) external view returns (Person memory) {
         require(msg.sender == owner, "Only the owner can call this function!");
-        return people[_blockchainAccountAddress];
+        return people[blockchainAccountAddress];
     }
 
     /**
      * Is the person authorized?
      *
-     * @param _blockchainAccountAddress the blockchain address of the person
-     * @return people[_blockchainAccountAddress].isAuthorized authorization status
+     * @param blockchainAccountAddress the blockchain address of the person
+     * @return people[blockchainAccountAddress].isAuthorized authorization status
      */
     function isPersonAuthorized(
-        address _blockchainAccountAddress
-    ) public view returns (bool) {
+        address blockchainAccountAddress
+    ) external view returns (bool) {
         require(msg.sender == owner, "Only the owner can call this function!");
-        return people[_blockchainAccountAddress].isAuthorized;
+        return people[blockchainAccountAddress].isAuthorized;
     }
 }
